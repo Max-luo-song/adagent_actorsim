@@ -1,0 +1,1 @@
+v15-r2 paired validation. Report: ${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/automated_patch_workflow_v2/rounds/v13_to_v15_tracking_curvature_r2/REPORT.md

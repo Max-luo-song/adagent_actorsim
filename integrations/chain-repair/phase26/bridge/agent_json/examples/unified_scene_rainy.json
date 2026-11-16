@@ -1,0 +1,137 @@
+{
+  "schema": "scene_task_v1",
+  "task_id": "unified_scene552_rainy",
+  "scene_id": "552",
+  "weather": "rainy",
+  "description": "Unified rainy RGB runtime with actor/signal preservation; model/style effects are not physical weather.",
+  "edits": [
+    {
+      "operation": "insert",
+      "object_id": "managed:task_car",
+      "asset_id": "realcar_white_20240604",
+      "placement_id": "scene552_ahead"
+    },
+    {
+      "operation": "translate",
+      "object_id": "native:RigidNodes:0",
+      "offset_world_m": [
+        0,
+        0.3,
+        0
+      ]
+    },
+    {
+      "operation": "set_signal",
+      "object_id": "signal:scene552_front_v1",
+      "state": "red"
+    },
+    {
+      "operation": "set_actor_trajectory",
+      "object_id": "native:SMPLNodes:1",
+      "trajectory": {
+        "schema": "actor_trajectory_v1",
+        "coordinate_frame": "start_ego_ground",
+        "outside_interval": "hold",
+        "waypoints": [
+          {
+            "timestamp_s": 8,
+            "offset_m": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 9,
+            "offset_m": [
+              1,
+              1,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 10,
+            "offset_m": [
+              1.5,
+              2.5,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 11,
+            "offset_m": [
+              1.5,
+              4,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 12,
+            "offset_m": [
+              1.5,
+              5.5,
+              0
+            ]
+          }
+        ],
+        "motion_profile": "smooth_v1",
+        "heading_mode": "path_tangent"
+      }
+    }
+  ],
+  "previews": [
+    {
+      "kind": "camera",
+      "args": {
+        "source_frame": 100
+      }
+    },
+    {
+      "kind": "ego_trajectory",
+      "args": {
+        "trajectory": {
+          "schema": "ego_trajectory_v1",
+          "coordinate_frame": "start_ego",
+          "start_frame": 80,
+          "waypoints": [
+            {
+              "time_s": 0.0,
+              "forward_m": 0.0,
+              "left_m": 0.0,
+              "yaw_degrees": 0.0
+            },
+            {
+              "time_s": 0.1,
+              "forward_m": 0.321737,
+              "left_m": 0.002588,
+              "yaw_degrees": 0.921747
+            },
+            {
+              "time_s": 0.2,
+              "forward_m": 0.64339,
+              "left_m": 0.010351,
+              "yaw_degrees": 1.843495
+            }
+          ],
+          "attitude_policy": "gravity_level"
+        },
+        "compare_recorded": true
+      }
+    },
+    {
+      "kind": "actor_trajectory",
+      "args": {
+        "object_id": "native:SMPLNodes:1",
+        "start_frame": 98,
+        "end_frame": 102,
+        "camera_source_frame": 80,
+        "render_fps": 30
+      }
+    }
+  ],
+  "verification_frames": [
+    100
+  ],
+  "reset_after": true,
+  "attitude_policy": "gravity_level"
+}

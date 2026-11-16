@@ -1,0 +1,40 @@
+{
+  "schema": "agent_catalog_v1",
+  "scenes": {
+    "552": "../../../phase4/dynamic552_frame80/scene_manifest.json",
+    "551": "../unified/scene_switch_551.json"
+  },
+  "assets": {
+    "realcar_white_20240604": {
+      "command": "../unified/managed_vehicle_quality_command.json",
+      "placement_id": "scene552_ahead",
+      "placement_scene_id": "552",
+      "quality": {
+        "status": "reference_preview_reviewed",
+        "scene_id": "552",
+        "source_frame": 80,
+        "camera": "CAM_FRONT",
+        "tested_world_yaw_offsets_degrees": [
+          0,
+          15
+        ],
+        "arbitrary_view_quality_certified": false,
+        "evidence_run": "../unified/asset_quality_runs/20261103T083945Z"
+      }
+    },
+    "waymo552_taxi25": {
+      "command": "../unified/managed_vehicle_command.json",
+      "placement_id": "scene552_ahead",
+      "placement_scene_id": "552",
+      "quality": {
+        "status": "limited_source_views",
+        "source_camera_azimuth_mean_degrees": -57.18553928095579,
+        "source_camera_azimuth_span_degrees": 23.151994593115926,
+        "default_placement_original_view_degrees": 176.04728247568406,
+        "default_placement_quality": "severely_blurred_in_actual_gpu_preview",
+        "arbitrary_view_quality_certified": false,
+        "evidence_run": "../unified/asset_quality_runs/20261103T083945Z"
+      }
+    }
+  }
+}

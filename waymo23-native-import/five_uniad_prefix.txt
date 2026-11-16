@@ -1,0 +1,73 @@
+import argparse
+import ast
+import json
+import math
+import os
+from pathlib import Path
+import pickle
+import sys
+
+ORDER = ['CAM_FRONT','CAM_FRONT_RIGHT','CAM_FRONT_LEFT','CAM_SIDE_LEFT','CAM_SIDE_RIGHT']
+EMBEDDING_ROWS = [0,1,2,4,5]
+
+
+def adapt_camera_modules(model):
+    import torch
+    changes = []
+    for name,module in list(model.named_modules()):
+        if hasattr(module,'num_cams'):
+            if module.num_cams!=6:
+                raise ValueError('unexpected num_cams at '+name)
+            module.num_cams = 5
+            changes.append(dict(module=name,field='num_cams',old=6,new=5))
+        if hasattr(module,'cams_embeds'):
+            old = module.cams_embeds
+            if not isinstance(old,torch.nn.Parameter) or old.ndim!=2 or old.shape[0]!=6:
+                raise ValueError('unexpected camera embedding at '+name)
+            rows = torch.tensor(EMBEDDING_ROWS,device=old.device)
+            module.cams_embeds = torch.nn.Parameter(
+                old.detach().index_select(0,rows).clone(),requires_grad=False)
+            changes.append(dict(module=name,field='cams_embeds',rows=EMBEDDING_ROWS))
+    if not any(x['field']=='cams_embeds' for x in changes):
+        raise ValueError('camera embeddings not found')
+    if not any(x['field']=='num_cams' for x in changes):
+        raise ValueError('camera-count modules not found')
+    return changes
+
+
+def prepare():
+    import numpy as np
+    from waymo_five_preview import load_factory
+    from prepare_uniad_input import lidar_to_camera
+    base = Path(os.environ['BASE'])
+    job = Path(os.environ['FIVE_JOB'])
+    job.mkdir(parents=True,exist_ok=True)
+    preview = base/'outputs/waymo23_five_preview_20261015_133005_251427'
+    source = json.loads((preview/'preview_report.json').read_text())
+    factory = load_factory(base/'waymo23-native-import/live_env.py')
+    env = factory(base/'code/HUGSIM',source['checkpoint'],source['inputs'],
+                  cameras=(0,1,2,3,4),scale=.5)
+    try:
+        obs,info = env.reset()
+        info['command'] = 2
+        info['cam_rect'] = np.eye(4)
+        info['cam_params'] = {}
+        for cid,c in env.cameras.items():
+            name = env.cam_names[cid]
+            w,h,k = c['width'],c['height'],c['K']
+            intr = dict(W=w,H=h,cx=float(k[0,2]),cy=float(k[1,2]),
+                        fovx=2*math.atan(w/(2*k[0,0])),
+                        fovy=2*math.atan(h/(2*k[1,1])))
+            info['cam_params'][name] = dict(
+                intrinsic=intr,l2c=lidar_to_camera(c['rig']),
+                v2c=np.linalg.inv(c['rig']))
+        if set(obs['rgb'])!=set(ORDER):
+            raise ValueError('five-camera names mismatch')
+        with (job/'observation.pkl').open('wb') as f:
+            pickle.dump((obs,info),f,protocol=4)
+        (job/'source.json').write_text(json.dumps(source,indent=2))
+        print('Prepared five real-camera observations:',job/'observation.pkl')
+    finally:
+        env.close()
+
+

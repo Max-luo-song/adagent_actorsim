@@ -1,0 +1,35 @@
+{
+  "operation": "insert",
+  "object_id": "managed:preview_car",
+  "mode": "diagnostic_preview",
+  "asset": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/bridge/assets/waymo552_rigid_id25_v1",
+  "asset_calibration": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/bridge/assets/waymo552_rigid_id25_v1/asset_calibration.json",
+  "asset_to_world": [
+    [
+      0.9653228687999584,
+      0.03164098786520438,
+      -0.2591343413342435,
+      23.293214653024428
+    ],
+    [
+      0.26087976635746524,
+      -0.08015133920121521,
+      0.9620382062732882,
+      3.5834098720425156
+    ],
+    [
+      0.009669874719591671,
+      -0.9962803875973698,
+      -0.08562641421746954,
+      1.1158868618382394
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "schema": "scene_edit_v1",
+  "expected_revision": 0
+}

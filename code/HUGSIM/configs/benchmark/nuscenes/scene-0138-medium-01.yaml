@@ -1,0 +1,31 @@
+mode: medium_01
+plan_list:
+- - 1.0
+  - 30.0
+  - -0.3
+  - 0
+  - 5.0
+  - 2024_07_02_14_35_19/postprocess/shadow.pth
+  - IDM
+  - v0: 5.0
+iteration: 30000
+sh_degree: 3
+load_HD_map: true
+white_background: false
+data_device: cpu
+data_type: nuscenes
+start_euler:
+- 0.0
+- 0.0
+- 0.0
+start_ab:
+- 0.0
+- 0.0
+start_velo: 1
+start_steer: 0
+target: 60
+scene_name: scene-0138
+affine: false
+quiet: false
+ignore_dynamic: false
+unicycle: false

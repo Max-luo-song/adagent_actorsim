@@ -1,0 +1,140 @@
+"""Reuse completed map A, freeze one native-car intervention, run and diagnose B."""
+
+# Portable source/data boundary (no global pathlib patch).
+import sys as _hugsim_sys
+from pathlib import Path as _HugsimNativePath
+_hugsim_repository = next((p for p in _HugsimNativePath(__file__).resolve().parents if (p / "integrations/_shared/paths.py").is_file()), None)
+if _hugsim_repository is None:
+    raise RuntimeError("Repository root missing: integrations/_shared/paths.py")
+if str(_hugsim_repository) not in _hugsim_sys.path:
+    _hugsim_sys.path.insert(0, str(_hugsim_repository))
+from integrations._shared.paths import Path as _HugsimPath, portable_path as _hugsim_path, expand_paths as _hugsim_expand
+Path = _HugsimPath
+
+import argparse,copy,datetime,importlib.util,json,sys,difflib
+pass  # Path is provided by the portable boundary above
+LOCAL=Path(__file__).resolve().parent;V4=LOCAL.parent/'light-map551-v4';OLD=LOCAL.parent/'light-cutin-diagnostic'
+sys.path[:0]=[str(LOCAL),str(V4),str(OLD)]
+from common import *
+
+def module(name,path):
+    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+
+base=module('cutin_v5_original_pipeline',OLD/'pipeline.py');original_check=base.check
+v4=module('cutin_v5_frozen_map_pipeline',V4/'pipeline.py')
+# The reused v4 pipeline inserts OLD at index1 during import. Restore the explicit
+# release precedence so its obsolete scoring exporter cannot shadow the v4 fix.
+sys.path[:0]=[str(LOCAL),str(V4),str(OLD)]
+OUTPUT=P26/'light_map551_cutin_native_v6';BASELINE=P26/'light_map551_v4'
+
+def pins():return {str(p):sha(p) for p in LOCAL.glob('*.py')}|{str(LOCAL/'run.sh'):sha(LOCAL/'run.sh')}
+
+def bindings():
+    # Resolve the new harness before configure() adds renderer snapshot paths.
+    import runtime,scoring,local_boot,tracker
+    expected={runtime:LOCAL/'runtime.py',scoring:V4/'scoring.py',local_boot:V4/'local_boot.py',tracker:OLD/'tracker.py'}
+    configure()
+    import map_reference
+    expected[map_reference]=V4/'map_reference.py'
+    for m,path in expected.items():
+        if Path(m.__file__).resolve()!=path:raise ValueError('Unexpected implementation binding: '+m.__name__)
+    return {m.__name__:str(path) for m,path in expected.items()}
+
+def baseline_check(path):
+    root,plan=v4.check(path)
+    admission=read(root/'full_episode_admission.json')
+    if not admission['passed']:raise ValueError('A was not admitted; do not run B')
+    verify(admission['summary']);verify(admission['map'])
+    report=read(root/'A/run_report.json')
+    if report.get('experiment_plan')!=asset(root/'plan.json') or report.get('model_weights_unchanged') is not True:
+        raise ValueError('A model/plan identity unavailable')
+    if report['status']!='completed' or len(report['trace'])!=188:raise ValueError('A is incomplete')
+    return root,plan
+
+def check(output):
+    root,plan=original_check(output)
+    if plan['native_collision_v6_code']!=pins():raise ValueError('Frozen B-v5 implementation changed')
+    if plan['map_v4_code']!=v4.pins():raise ValueError('Frozen A map/controller sources changed')
+    baseline,old=baseline_check(plan['baseline_root'])
+    for entry in plan['baseline_receipts'].values():verify(entry)
+    for k in ['static_map','boot_manifest','boot_archive','initial_context_asset']:verify(plan[k])
+    for k in ['seed','common_scene_token','controls','source_end_frame','initial_context','termination','allowed_online_inputs','forbidden_online_inputs']:
+        if plan[k]!=old[k]:raise ValueError('One-factor pair contract differs: '+k)
+    for name in ['scene_manifest.json','baseline_freeze.json','map/map.json','boot/manifest.json','initial_context.json']:
+        if sha(root/name)!=sha(baseline/name):raise ValueError('Paired frozen input differs: '+name)
+    verify(plan['collision_off_baseline_report'])
+    verify(plan['native_cpu_admission'])
+    if plan['native_collision_policy']!=dict(enabled_after_common_index=5,implementation='unchanged UniAD collision_optimization',external_obstacle_mpc=False):raise ValueError('Native collision policy changed')
+    admission=read(root/'checks/cpu_admission.json')
+    if not admission['passed'] or not read(root/'checks/native_cpu_replay/result.json')['ipopt_solve_passed']:raise ValueError('Native collision CPU admission missing')
+    scenario=read(root/'scenario/scenario.json')
+    if not scenario['passed'] or scenario['config']!=__import__('cutin_scenario').CONFIG:raise ValueError('Unverified cut-in script')
+    return root,plan
+
+base.check=check
+
+def prepare(output):
+    root=Path(output).resolve()
+    if (root/'plan.json').exists():
+        check(root);return dict(reused=True,output=str(root),gpu_executed=False)
+    baseline,old=baseline_check(BASELINE)
+    print('Verifying existing completed A pixels, output receipts and frozen model; A will not be rerun...',flush=True)
+    if not v4.base.completed_arm(baseline,'A'):raise ValueError('Missing valid A')
+    root.mkdir(parents=True,exist_ok=True)
+    for name in ['scene_manifest.json','baseline_freeze.json','baseline_verification.json','initial_context.json','baseline_input_audit.json','map/map.json','boot/manifest.json']:
+        p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes((baseline/name).read_bytes())
+    from cutin_scenario import generate
+    scenario=generate(root/'scenario',baseline)
+    plan=copy.deepcopy(old)
+    plan.update(schema='native551_single_car_cutin_static_map_native_collision_v6',created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        native_collision_v6_code=pins(),baseline_root=str(baseline),
+        native_cpu_admission=asset(root/'checks/cpu_admission.json'),
+        baseline_receipts={n:asset(baseline/n) for n in ['plan.json','full_episode_admission.json','A/run_report.json','A/summary.json','A/actor_tracks.npz']},
+        B_admitted=True,intervention_only='native:RigidNodes:3 pose trajectory; all other actors, scene, weather, assets, model, tracker, map and budgets unchanged',
+        patch_initially=None,gpu_executed=False,
+        collision_off_baseline_root=str(P26/'light_map551_cutin_v5'),
+        collision_off_baseline_report=asset(P26/'light_map551_cutin_v5/B/run_report.json'),
+        native_collision_policy=dict(enabled_after_common_index=5,implementation='unchanged UniAD collision_optimization',external_obstacle_mpc=False),
+        prefix_policy='Re-render and infer observations0..5, verify pixels, perception, raw motion, actual pose and action; replay only already-executed A actions; keep full current UniAD history after fork',
+        local_intervention_start_s=.5,source_intervention_start_s=1.5,
+        B_success_not_preregistered_as_mandatory_avoidance=True,
+        B_outcome_policy='Normal deceleration/yield may be correct. Use same fixed collision, map, stall, recovery, simulation and wall-clock limits as A. Insufficient response/recovery window remains unresolved; do not change criteria after run.',
+        baseline_reused_without_reexecution=True)
+    plan['assets'].update(scene=asset(root/'scene_manifest.json'),scenario=asset(root/'scenario/scenario.json'),
+        baseline=asset(root/'baseline_freeze.json'),target_track=asset(root/'scenario/target_track.npz'))
+    write(root/'plan.json',plan)
+    patch=''.join(difflib.unified_diff((V4/'runtime.py').read_text().splitlines(True),(LOCAL/'runtime.py').read_text().splitlines(True),fromfile='frozen_v4/runtime.py',tofile='B_v5/runtime.py'))
+    (root/'runtime_changes_from_A.diff').write_text(patch)
+    write(root/'status.json',dict(stage='B_prepared_cpu_audited',A_reused=True,patch=None,gpu_executed=False,
+        next='check then full on idle CUDA node; inspect/render reuse completed B'))
+    return dict(prepared=True,output=str(root),A_reused=True,scenario_passed=scenario['passed'],
+        actor_metrics=scenario['metrics'],minimum_other_actor_gap_m=scenario['minimum_other_actor_gap_m'],gpu_executed=False)
+
+def full(output):
+    root,plan=check(output);bindings()
+    summary=base.run_and_score(root,'B',plan['controls'],Path(plan['baseline_root'])/'A')
+    from compare_native import compare_native
+    comparison=compare_native(root)
+    write(root/'status.json',dict(stage='B_native_collision_off_on_compared',gpu_executed=True,
+        comparison=asset(root/'comparison_Boff_Bon.json'),artifacts=asset(root/'presentation_Boff_Bon/artifacts.json')))
+    return dict(summary=summary,native_collision_comparison=comparison)
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('stage',choices=['prepare','check','full','inspect','render']);parser.add_argument('--output',default=str(OUTPUT));args=parser.parse_args()
+    if args.stage=='prepare':out=prepare(args.output)
+    elif args.stage=='check':
+        root,plan=check(args.output);resolved=bindings()
+        import torch
+        out=dict(verified=True,cuda_available=torch.cuda.is_available(),A_reused=True,controls=plan['controls'],tracker_and_map_unchanged=True,
+            source_frame_offset=10,local_intervention_start_s=.5,absolute_source_activation_s=1.5,patch=None,implementation_bindings=resolved)
+        write(root/'checks/preflight.json',out)
+    elif args.stage=='full':out=full(args.output)
+    else:
+        root,plan=check(args.output)
+        if not base.completed_arm(root,'B'):raise ValueError('B not executed; only CPU preparation exists')
+        from compare_native import compare_native
+        comparison=compare_native(root)
+        out=comparison if args.stage=='inspect' else comparison['media']
+    print(json.dumps(out,indent=2,allow_nan=False,ensure_ascii=False))
+
+if __name__=='__main__':main()

@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "base_version",
+    "candidate_version",
+    "candidate_directory",
+    "output_namespace",
+    "failure_reason",
+    "operations",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "patch_instruction_v1"
+    },
+    "base_version": {
+      "const": "v12"
+    },
+    "candidate_version": {
+      "const": "v13"
+    },
+    "candidate_directory": {
+      "type": "string",
+      "pattern": "^light-reference-join-v13(-r[0-9]+)?$"
+    },
+    "output_namespace": {
+      "type": "string",
+      "pattern": "^light_reference_join_v13(_r[0-9]+)?$"
+    },
+    "failure_reason": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "op",
+              "path",
+              "before",
+              "after"
+            ],
+            "properties": {
+              "op": {
+                "const": "replace_exact"
+              },
+              "path": {
+                "type": "string"
+              },
+              "before": {
+                "type": "string"
+              },
+              "after": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "op",
+              "path",
+              "content"
+            ],
+            "properties": {
+              "op": {
+                "const": "create_file"
+              },
+              "path": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "causal_tests_required",
+        "matched_closed_loop_required",
+        "normal_scene_nonregression_required",
+        "cross_scene_nonregression_required"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "causal_tests_required": {
+          "const": true
+        },
+        "matched_closed_loop_required": {
+          "const": true
+        },
+        "normal_scene_nonregression_required": {
+          "const": true
+        },
+        "cross_scene_nonregression_required": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

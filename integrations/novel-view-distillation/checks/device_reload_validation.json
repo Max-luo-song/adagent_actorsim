@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "unit_tests": 21,
+  "recovery_tamper_rejected": true,
+  "preserved_artifacts": {
+    "render/manifest.json": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/render/manifest.json",
+      "sha256": "773e021f5f2e2335029a4258e6e8f8ca1af21f0e6cd75c2f409e90a361e46074"
+    },
+    "pseudo_gt/manifest.json": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/pseudo_gt/manifest.json",
+      "sha256": "b2d18a2df58682a87be4245f74d9f55cc0222d276c1b7ac963ecd4f086bd1de6"
+    },
+    "distill/receipt.json": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/distill/receipt.json",
+      "sha256": "36f93e5847258d47c36932ba0fdfe36ec9233ca0812f3b19a6e350122c6af7f9"
+    },
+    "distill/scene_manifest.json": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/distill/scene_manifest.json",
+      "sha256": "ffc7d695fd0aa66f8ba1a876b4cfeedb0c932f7b2b8b7ce3c48d20221e9d88a9"
+    },
+    "distill/source_report.json": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/distill/source_report.json",
+      "sha256": "b1eb31fac10359b0b17f04cbf0aafb79b31b8ea23f9bc592c093de3a7423f9b0"
+    },
+    "distill/config.yaml": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/distill/config.yaml",
+      "sha256": "f99e7223df98c60171f9180ee8f8a97a1f84d392627f3d8a67f1ef7f436d3f9e"
+    },
+    "distill/checkpoint_distilled.pth": {
+      "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/distill/checkpoint_distilled.pth",
+      "sha256": "cecd8ba3034cd64e5a4064348cbe9c048481ad657a6c013c1d0650fe4d56ac92"
+    }
+  },
+  "changed_files": [
+    "framework.py",
+    "run.sh"
+  ],
+  "retrained": false,
+  "checkpoint_rewritten": false,
+  "gpu_recovery_executed": false,
+  "recovery_plan": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/failure_audit/device_reload_plan.json"
+}

@@ -1,0 +1,321 @@
+{
+  "schema": "cross_scene_asset_preparation_v1",
+  "cases": {
+    "172": {
+      "scene": 172,
+      "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/172",
+      "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_172/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+      "frames": 198
+    },
+    "552": {
+      "scene": 552,
+      "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/552",
+      "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_552/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+      "frames": 198
+    },
+    "621": {
+      "scene": 621,
+      "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/621",
+      "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_621/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+      "frames": 198
+    }
+  },
+  "arms": {
+    "v13": {
+      "role": "reference",
+      "code": "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2",
+      "code_pins": {
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/compare_native.py": "25b887fc7a9702d38f636337ffad798f236ca6bd4910b553e8a2461307ffe45e",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/cpu_check.py": "01422b2507446b0957231b121ea396e5bda16d34066a8b4c7043f263bd739e68",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/cutin_scenario.py": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/intervention.py": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/joint_safety.py": "c2d91e7fdefb260bb67cbe4694a80d9e8ea649eb9b0aa3e0748267cb431616e9",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/joint_safety_v7.py": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/native_collision.py": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/observation_evidence.py": "2fbb4f74e0af0df55c83fb1d0f8ea78f0633b16755e0867a9f6faabe15460431",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/pair_diagnostics.py": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/pipeline.py": "0e45c16b29ae45af677a81c6775a692f7c498e14ac4cd410d45c524508ff10b7",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/probe_native.py": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/reference_adapter.py": "e14aa2aafd936550db80df16060060981b5e43718ee269224164c00198874bca",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/reference_join.py": "a0345270747a27dd495b4f6562a3539eb28ed72d9a71d0ba84b93d168e8533eb",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/risk_memory.py": "3ee9fa466afecd916fa3864a89f570c758f93f2091f0a76e6b7d00d52f699e3b",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/run.sh": "20eac2090a60dc40badc59ab90d1c61cd942fa0f45946d1a5c86dee5b116553a",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/runtime.py": "68585e42b0cbbacbe6d27d016f54a8b5e7ac570bd564126c1757646627c4a451",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_cutin.py": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_evidence_control.py": "144ca3eadaa109e434404fe4e14162f503e3e6a50f6cbd6289f522ebc2609223",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_intent_recovery.py": "63155456cb257995fb99064db563331fdcad512eb8631fae7b69815ddc55814f",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_joint_safety.py": "18c696d98d90955a7ba8abc4517d76148fe52f420354d3b1621729f56d823527",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_native_collision.py": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_reference_join.py": "0a586de3048598cb2cdf30c558f188b967c3e228746da31c1a40ce96070474a1",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_repair.py": "b4eb5665f6719fda40a5ee821b2523517b2e23bd830c26c818c0fd27db00fc68",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_risk_memory.py": "ff9ec110802d46c3d790c1465d4d31fe5dd6f9fab1d7f8289c8d8fcd61d5200c",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/tests/test_risk_provenance.py": "3767d7847990069a260650be39c9617a26880db88138091641ce9c4ebeba128f",
+        "${HUGSIM_ROOT}/integrations/light-reference-join-v13-r2/worker.py": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+      },
+      "measured_551_metrics": {
+        "original551": {
+          "score": {
+            "hdscore": 0.2763164886550826,
+            "pdms": 1.0,
+            "rc": 0.2763164886550826
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 78.21310319769701,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 0.06197567658031264,
+          "peak_abs_lateral_m": 0.06197567658031264,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/original551/on/A/run_report.json",
+            "sha256": "5a03bb0c4039d19f48d6989e3c1d0039b3709c5959613b892cb484c0591723d1"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/original551/on/A/summary.json",
+            "sha256": "8774e35bdbb1d38d99020bf9f82e278c6a804fbaf6cb2a5a90cee1e06b7e9ca8"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/original551/on/contract.json",
+            "sha256": "e99b5114bf165cecca0d2a5f34d13db9ef59796976815c59938c86b031030183"
+          }
+        },
+        "cutin551": {
+          "score": {
+            "hdscore": 0.2609065306339338,
+            "pdms": 1.0,
+            "rc": 0.2609065306339338
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 72.73089904228264,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 1.8183696225700945,
+          "peak_abs_lateral_m": 4.086766548750351,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/cutin551/on/B/run_report.json",
+            "sha256": "23731f156b533fd7735176ed662899efdb1e5dd4d2196ccbfe714eba7e6c4c8d"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/cutin551/on/B/summary.json",
+            "sha256": "600b3f7e167f76f81a2695fc26590d9ae4a0a8aabf0923d42af99254a6c7f8b5"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1/cases/cutin551/on/contract.json",
+            "sha256": "917549240ef99d3eb20b562440258924feee5293406bd73288be2c4465e0b649"
+          }
+        }
+      }
+    },
+    "v15": {
+      "role": "highest_score_primary",
+      "code": "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2",
+      "code_pins": {
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/compare_native.py": "2f113bd6b41c000a6474039e900d3f56ee91ea450bd2a1102b7dccfb106d9ae5",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/cpu_check.py": "69b1f9f3c03c57f395e0c0553c08b0e087a276b4ae3206a0b75513d003109984",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/cutin_scenario.py": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/intervention.py": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/joint_safety.py": "00c7e83eea9cb740ba82a5b4edd8e4141ac5bc04efc75534de91e12656d4a568",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/joint_safety_v7.py": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/native_collision.py": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/observation_evidence.py": "2fbb4f74e0af0df55c83fb1d0f8ea78f0633b16755e0867a9f6faabe15460431",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/pair_diagnostics.py": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/pipeline.py": "aa72976ae039e227f43985edca6c6ae0c4dd148b9a01a14cbad6c2095b64ce4e",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/probe_native.py": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/reference_adapter.py": "e14aa2aafd936550db80df16060060981b5e43718ee269224164c00198874bca",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/reference_join.py": "a0345270747a27dd495b4f6562a3539eb28ed72d9a71d0ba84b93d168e8533eb",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/risk_memory.py": "3ee9fa466afecd916fa3864a89f570c758f93f2091f0a76e6b7d00d52f699e3b",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/run.sh": "fdb7a14c5cb43ca560702d0c9b04683847528677283de1d5763f2b6213e13807",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/runtime.py": "68585e42b0cbbacbe6d27d016f54a8b5e7ac570bd564126c1757646627c4a451",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_cutin.py": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_evidence_control.py": "4a406be57f494264526d5d697b4ab0d41a294b1a3a7ca364698a1aec1bc95fa1",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_intent_recovery.py": "8979dfbdd3be14bfbcae9e5f80587ada69e7ac7df5b2d7e23f66ce45298ff0ab",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_joint_safety.py": "c3e330474b15521161625efa5ad7546bdf577f7ffe1f3fc9d35ce7116a7cd1cc",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_native_collision.py": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_reference_join.py": "c4315ef7b046356a171220d9de5033800224616d5b3d06f501bb217901ba632a",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_repair.py": "4cf742c01ec52fc8b3029b741b4484452bd98f98fe5a8fdc9110bfebca1da99c",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_risk_memory.py": "c35173a4d282f83905d6c92949e03fe130a0187fa493f371183988795e89487b",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/tests/test_risk_provenance.py": "aace4494f0d64a3b001cddbba834da71f3c590178ab71be249daa8c55f982bcb",
+        "${HUGSIM_ROOT}/integrations/light-tracking-curvature-v15-r2/worker.py": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+      },
+      "measured_551_metrics": {
+        "original551": {
+          "score": {
+            "hdscore": 0.2763164886550826,
+            "pdms": 1.0,
+            "rc": 0.2763164886550826
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 78.217314987861,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 0.061929381874329115,
+          "peak_abs_lateral_m": 0.061929381874329115,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/original551/on/A/run_report.json",
+            "sha256": "12e03dc853fbce8a35e466a78f01e232dfc5019f449c4ae62680faebb22a98dc"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/original551/on/A/summary.json",
+            "sha256": "849c9712183c7bd49e4a5b43b6f40b3f4d79ad96b0146c3232329ba108a6e581"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/original551/on/contract.json",
+            "sha256": "89abd83a7e12c767217a744a866606b38ebb477a7e44ec75c067b43e0a1d930c"
+          }
+        },
+        "cutin551": {
+          "score": {
+            "hdscore": 0.26533467949058576,
+            "pdms": 1.0,
+            "rc": 0.26533467949058576
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 74.31139194962297,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 4.506514574973764,
+          "peak_abs_lateral_m": 4.9903687561993815,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/cutin551/on/B/run_report.json",
+            "sha256": "92663df1c13292ca3709c23b70eae514296e19f60b7b7cb7f176bad9e74b712d"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/cutin551/on/B/summary.json",
+            "sha256": "783d0539a25748fb0f24cdd3a51c9a1051b2e65bdb3bc0bfba2d10792113b381"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v15_validation_r2_v1/cases/cutin551/on/contract.json",
+            "sha256": "9ee12f4586333199941ff758251080c7d04bcec0ac1f54379d091ac4d0008292"
+          }
+        }
+      }
+    },
+    "v17": {
+      "role": "stable_comparison",
+      "code": "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2",
+      "code_pins": {
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/compare_native.py": "9c33cedfb517419e871e17b35ec6ae1e5de32a59a7eafe49d4f3cd79ac37ff6f",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/cpu_check.py": "f203619a50f43c0905f9f20bc797e9fbfde78440640635fb1d3742a46460d0e0",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/cutin_scenario.py": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/intervention.py": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/joint_safety.py": "f9f6d312110f5be335eae6e48723f8c254dad31ec6282b732594b412fe62fa62",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/joint_safety_v7.py": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/native_collision.py": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/observation_evidence.py": "2fbb4f74e0af0df55c83fb1d0f8ea78f0633b16755e0867a9f6faabe15460431",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/pair_diagnostics.py": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/pipeline.py": "04a46feb87b9fe667f7094f1ed12cd2da35bdd36385dc0437383ce6c230a2cc4",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/probe_native.py": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/reference_adapter.py": "e14aa2aafd936550db80df16060060981b5e43718ee269224164c00198874bca",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/reference_join.py": "a0345270747a27dd495b4f6562a3539eb28ed72d9a71d0ba84b93d168e8533eb",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/risk_memory.py": "3ee9fa466afecd916fa3864a89f570c758f93f2091f0a76e6b7d00d52f699e3b",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/run.sh": "a779c8c67254765786f15f8008aa576e224e352b38850b9f34dd3bb6b9a20c5e",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/runtime.py": "f0913ae8b1c7bbe40c5667022fa32c77a873b86231ad1c31a8c81298dab7bf55",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/smpl_runtime.py": "9854d6029baebf650dc5e8523886115505dde958b9abf1aa9e8245e4460c27d5",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_cutin.py": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_evidence_control.py": "1492798f3caa094fb02d0fae5f7b706ebff0ecb26af1a30592f71d45a686e4a4",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_intent_recovery.py": "39d2ebbcc33937170b712b3c2d21f0adc8837f0b5a8269ff719a241152094ab3",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_joint_safety.py": "3037d42f0ca60574dbd3670a0271a93c5c04ba9dc6cdc72c418bd0ea634dac7e",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_native_collision.py": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_reference_join.py": "7d71358d58ee2fd28c8244b76cb316a20dee0602191f78bdb45f19067c199cb3",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_repair.py": "bbf278fad666c2bdd8fe187d3bc06b99af50b3d8cd939bd1e3d3e26c81f36050",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_risk_memory.py": "c3478322f7adb550a8fd4bbb91df024d90cd0efec5d315f40a3aca526348560f",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/tests/test_risk_provenance.py": "c11e0b188ed5d16acd8e8cfbc0bc9de8f51927a1414e7a853a8a414f95b03843",
+        "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2/worker.py": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+      },
+      "measured_551_metrics": {
+        "original551": {
+          "score": {
+            "hdscore": 0.2763164886550826,
+            "pdms": 1.0,
+            "rc": 0.2763164886550826
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 78.21621355934809,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 0.061899942225181304,
+          "peak_abs_lateral_m": 0.061899942225181304,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/original551/on/A/run_report.json",
+            "sha256": "90c1d204d10848c6e15b9d2a97d70754929c57795054aaffea9b7fa1c736e9c2"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/original551/on/A/summary.json",
+            "sha256": "5943cd573e8a4be68232975621d6f7abd26f651db04f5d1983de904db8f9c64c"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/original551/on/contract.json",
+            "sha256": "3f67c2bbdae64f63700e27c37535f51a6dbf999a795fb62134f22011744e1af9"
+          }
+        },
+        "cutin551": {
+          "score": {
+            "hdscore": 0.26285491613086065,
+            "pdms": 1.0,
+            "rc": 0.26285491613086065
+          },
+          "status": "completed",
+          "controls": 188,
+          "observations": 189,
+          "collision": false,
+          "map_departure": false,
+          "unresolved_stop": false,
+          "progress_m": 73.46585699342283,
+          "stopped_s": 0.0,
+          "final_abs_lateral_m": 1.774382569038084,
+          "peak_abs_lateral_m": 4.086766548750351,
+          "report": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/cutin551/on/B/run_report.json",
+            "sha256": "b6a7c748e19da90be95eb31ae209320e066544c65779d025fb3d835829ac4cbd"
+          },
+          "summary": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/cutin551/on/B/summary.json",
+            "sha256": "a03af445d298e8095adbf9469a54d323850732431937273ec3abf28c73140401"
+          },
+          "contract": {
+            "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1/cases/cutin551/on/contract.json",
+            "sha256": "a608e78f352316fac66340057998d6a68b3cea37a65da8b0ff267ea6ba6cee59"
+          }
+        }
+      }
+    }
+  },
+  "selection_evidence": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v7/campaigns/patch_auto_v7/candidate_registry.json",
+  "selection_evidence_sha256": "b485d7b9d8e9f10d507f9141790c7a666ffc2b5f942b9fbc7fea3f3fc80bef0b",
+  "donor_pins": {
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase33/scene_data551_v1/scene_data.py": "444bb44df1cca919b984dcdc4d69d654bfa37cf7d46b107a7dee045159ed801b",
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase33/scene_data551_v1/raw_metadata.py": "7914517f55e92d421acf3f78455420a16e6b4cdf771a553f980236cba19dc3f7",
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase33/scene_data551_v1/export_semantics.py": "2839bc5b9b099441fae58f7352e1f4fcb3cdb2c40989cf909eb503c7cab77c09",
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase33/scene_data551_v1/portable_segformer.py": "877151baa0cdc17aee7e7a2f6e9b4184cb24f7f8efd79b567a22255bc953a864",
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase33/scene_data551_v1/point_semantics.py": "c6f1138fce4fea63af52a60f4c45493be7b90830fc9ae0f0a4d503f428876e99"
+  },
+  "policy_modified": false,
+  "scene_adapter_implemented": false,
+  "closed_loop_started": false,
+  "global_patch_validated": false,
+  "missing": [
+    "scene-specific reviewed map with boundary holes preserved",
+    "parameterized runtime and native scorer adapter",
+    "new independent closed-loop episodes for all three arms"
+  ],
+  "scope": "Asset preparation only. Semantic model predictions are not physical ground truth. No cross-scene score exists yet."
+}

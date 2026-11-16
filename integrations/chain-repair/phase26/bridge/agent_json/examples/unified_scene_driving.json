@@ -1,0 +1,338 @@
+{
+  "schema": "scene_task_v1",
+  "task_id": "unified_scene552_drive",
+  "scene_id": "552",
+  "weather": "clear",
+  "description": "Unified native-state reference tracking with a smooth pedestrian and edited signal; no UniAD inference, avoidance or collision certification.",
+  "edits": [
+    {
+      "operation": "set_actor_trajectory",
+      "object_id": "native:SMPLNodes:1",
+      "trajectory": {
+        "schema": "actor_trajectory_v1",
+        "coordinate_frame": "start_ego_ground",
+        "outside_interval": "hold",
+        "waypoints": [
+          {
+            "timestamp_s": 8,
+            "offset_m": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 9,
+            "offset_m": [
+              1,
+              1,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 10,
+            "offset_m": [
+              1.5,
+              2.5,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 11,
+            "offset_m": [
+              1.5,
+              4,
+              0
+            ]
+          },
+          {
+            "timestamp_s": 12,
+            "offset_m": [
+              1.5,
+              5.5,
+              0
+            ]
+          }
+        ],
+        "motion_profile": "smooth_v1",
+        "heading_mode": "path_tangent"
+      }
+    },
+    {
+      "operation": "set_signal",
+      "object_id": "signal:scene552_front_v1",
+      "state": "red"
+    }
+  ],
+  "previews": [
+    {
+      "kind": "camera",
+      "args": {
+        "source_frame": 80
+      }
+    }
+  ],
+  "ego_execution": {
+    "driver": "reference_tracking",
+    "trajectory": {
+      "schema": "ego_trajectory_v1",
+      "coordinate_frame": "start_ego",
+      "start_frame": 80,
+      "waypoints": [
+        {
+          "time_s": 0.0,
+          "forward_m": 0.0,
+          "left_m": 0.0,
+          "yaw_degrees": 0.0
+        },
+        {
+          "time_s": 0.1,
+          "forward_m": 0.321737,
+          "left_m": 0.002588,
+          "yaw_degrees": 0.921747
+        },
+        {
+          "time_s": 0.2,
+          "forward_m": 0.64339,
+          "left_m": 0.010351,
+          "yaw_degrees": 1.843495
+        },
+        {
+          "time_s": 0.3,
+          "forward_m": 0.964877,
+          "left_m": 0.023288,
+          "yaw_degrees": 2.765242
+        },
+        {
+          "time_s": 0.4,
+          "forward_m": 1.286114,
+          "left_m": 0.041395,
+          "yaw_degrees": 3.68699
+        },
+        {
+          "time_s": 0.5,
+          "forward_m": 1.607019,
+          "left_m": 0.064667,
+          "yaw_degrees": 4.608737
+        },
+        {
+          "time_s": 0.6,
+          "forward_m": 1.927507,
+          "left_m": 0.093099,
+          "yaw_degrees": 5.530485
+        },
+        {
+          "time_s": 0.7,
+          "forward_m": 2.247497,
+          "left_m": 0.126682,
+          "yaw_degrees": 6.452232
+        },
+        {
+          "time_s": 0.8,
+          "forward_m": 2.566904,
+          "left_m": 0.165409,
+          "yaw_degrees": 7.37398
+        },
+        {
+          "time_s": 0.9,
+          "forward_m": 2.885648,
+          "left_m": 0.209269,
+          "yaw_degrees": 8.295727
+        },
+        {
+          "time_s": 1.0,
+          "forward_m": 3.203645,
+          "left_m": 0.258251,
+          "yaw_degrees": 9.217474
+        },
+        {
+          "time_s": 1.1,
+          "forward_m": 3.520813,
+          "left_m": 0.312342,
+          "yaw_degrees": 10.139222
+        },
+        {
+          "time_s": 1.2,
+          "forward_m": 3.837069,
+          "left_m": 0.371528,
+          "yaw_degrees": 11.060969
+        },
+        {
+          "time_s": 1.3,
+          "forward_m": 4.152332,
+          "left_m": 0.435795,
+          "yaw_degrees": 11.982717
+        },
+        {
+          "time_s": 1.4,
+          "forward_m": 4.466521,
+          "left_m": 0.505124,
+          "yaw_degrees": 12.904464
+        },
+        {
+          "time_s": 1.5,
+          "forward_m": 4.779554,
+          "left_m": 0.579499,
+          "yaw_degrees": 13.826212
+        },
+        {
+          "time_s": 1.6,
+          "forward_m": 5.09135,
+          "left_m": 0.6589,
+          "yaw_degrees": 14.747959
+        },
+        {
+          "time_s": 1.7,
+          "forward_m": 5.401828,
+          "left_m": 0.743306,
+          "yaw_degrees": 15.669706
+        },
+        {
+          "time_s": 1.8,
+          "forward_m": 5.710908,
+          "left_m": 0.832696,
+          "yaw_degrees": 16.591454
+        },
+        {
+          "time_s": 1.9,
+          "forward_m": 6.018511,
+          "left_m": 0.927047,
+          "yaw_degrees": 17.513201
+        },
+        {
+          "time_s": 2.0,
+          "forward_m": 6.324555,
+          "left_m": 1.026334,
+          "yaw_degrees": 18.434949
+        },
+        {
+          "time_s": 2.1,
+          "forward_m": 6.628963,
+          "left_m": 1.130531,
+          "yaw_degrees": 19.356696
+        },
+        {
+          "time_s": 2.2,
+          "forward_m": 6.931655,
+          "left_m": 1.239612,
+          "yaw_degrees": 20.278444
+        },
+        {
+          "time_s": 2.3,
+          "forward_m": 7.232554,
+          "left_m": 1.353548,
+          "yaw_degrees": 21.200191
+        },
+        {
+          "time_s": 2.4,
+          "forward_m": 7.53158,
+          "left_m": 1.47231,
+          "yaw_degrees": 22.121939
+        },
+        {
+          "time_s": 2.5,
+          "forward_m": 7.828657,
+          "left_m": 1.595867,
+          "yaw_degrees": 23.043686
+        },
+        {
+          "time_s": 2.6,
+          "forward_m": 8.123709,
+          "left_m": 1.724186,
+          "yaw_degrees": 23.965433
+        },
+        {
+          "time_s": 2.7,
+          "forward_m": 8.416657,
+          "left_m": 1.857236,
+          "yaw_degrees": 24.887181
+        },
+        {
+          "time_s": 2.8,
+          "forward_m": 8.707428,
+          "left_m": 1.994981,
+          "yaw_degrees": 25.808928
+        },
+        {
+          "time_s": 2.9,
+          "forward_m": 8.995945,
+          "left_m": 2.137386,
+          "yaw_degrees": 26.730676
+        },
+        {
+          "time_s": 3.0,
+          "forward_m": 9.282134,
+          "left_m": 2.284414,
+          "yaw_degrees": 27.652423
+        },
+        {
+          "time_s": 3.1,
+          "forward_m": 9.56592,
+          "left_m": 2.436026,
+          "yaw_degrees": 28.574171
+        },
+        {
+          "time_s": 3.2,
+          "forward_m": 9.847231,
+          "left_m": 2.592184,
+          "yaw_degrees": 29.495918
+        },
+        {
+          "time_s": 3.3,
+          "forward_m": 10.125993,
+          "left_m": 2.752848,
+          "yaw_degrees": 30.417666
+        },
+        {
+          "time_s": 3.4,
+          "forward_m": 10.402135,
+          "left_m": 2.917975,
+          "yaw_degrees": 31.339413
+        },
+        {
+          "time_s": 3.5,
+          "forward_m": 10.675585,
+          "left_m": 3.087523,
+          "yaw_degrees": 32.26116
+        },
+        {
+          "time_s": 3.6,
+          "forward_m": 10.946272,
+          "left_m": 3.261448,
+          "yaw_degrees": 33.182908
+        },
+        {
+          "time_s": 3.7,
+          "forward_m": 11.214125,
+          "left_m": 3.439704,
+          "yaw_degrees": 34.104655
+        },
+        {
+          "time_s": 3.8,
+          "forward_m": 11.479077,
+          "left_m": 3.622247,
+          "yaw_degrees": 35.026403
+        },
+        {
+          "time_s": 3.9,
+          "forward_m": 11.741058,
+          "left_m": 3.809028,
+          "yaw_degrees": 35.94815
+        },
+        {
+          "time_s": 4.0,
+          "forward_m": 12.0,
+          "left_m": 4.0,
+          "yaw_degrees": 36.869898
+        }
+      ],
+      "attitude_policy": "gravity_level"
+    },
+    "max_tracking_error_m": 1.0
+  },
+  "verification_frames": [
+    80
+  ],
+  "reset_after": true,
+  "attitude_policy": "gravity_level"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "optional_sensor_validation_status_v1",
+  "CPU_tests_passed": 27,
+  "default_disabled": true,
+  "feeds_UniAD": false,
+  "feeds_controller": false,
+  "controller_modified": false,
+  "new_GPU_scan_executed": false,
+  "physical_lidar_certified": false,
+  "radar_available": false,
+  "actual_archived_depth_export": {
+    "path": "${HUGSIM_ROOT}/outputs/scene_platform_demo/sensors/recorded_cutin30_depth_v1/report.json",
+    "sha256": "7949a680434054cdf2d62a7cbbb2a9798f82317dc1d5a8c536d21cebce1fd67b"
+  },
+  "GPU_scan_preflight": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/scene_platform_v1/sensor_validation/jobs/sensor_scan_sync_v1/preflight.json",
+    "sha256": "7e430c33901dacd508de8b6a6056afe60628219ab4be6c2a9590813652de9119"
+  },
+  "GPU_task_state": {
+    "state": "prepared",
+    "controls_started": false
+  },
+  "remaining": [
+    "actual six-face Gaussian scan on scene551",
+    "same-pose/time original-edited-reset GPU differential",
+    "enabled recorder closed-loop GPU run"
+  ]
+}

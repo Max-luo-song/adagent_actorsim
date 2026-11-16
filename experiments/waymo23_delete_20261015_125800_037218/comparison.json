@@ -1,0 +1,29 @@
+{
+  "stage": "edited-scene closed-loop integration comparison",
+  "scene": "waymo23",
+  "model": "uniad",
+  "removed_instance": 10,
+  "steps": 10,
+  "baseline": "/inspire/hdd3/project/intelligent-driving-agent/guoluosong-253108120129/hugsim-reproduction/outputs/waymo23_uniad_closed_20261015_124625_556466",
+  "edited": "/inspire/hdd3/project/intelligent-driving-agent/guoluosong-253108120129/hugsim-reproduction/outputs/waymo23_uniad_closed_20261015_123753_448418",
+  "initial_states_and_calibration_match": true,
+  "first_front_changed_pixels": 949,
+  "first_trajectory_difference": {
+    "per_point_m": [
+      0.02079385308826537,
+      0.04994512602951217,
+      0.08503899981756138,
+      0.13210662330383202,
+      0.17864269061559265,
+      0.22962615418314242
+    ],
+    "mean_m": 0.11602557450631767,
+    "max_m": 0.22962615418314242
+  },
+  "first_acceleration_delta": -0.08999427530534887,
+  "final_ego_distance_m": 0.025304699639090388,
+  "rear_view_quality_validated": false,
+  "repeatability_validated": false,
+  "driving_quality_validated": false,
+  "collision_and_scoring_validated": false
+}

@@ -1,0 +1,84 @@
+
+# Portable source/data boundary (no global pathlib patch).
+import sys as _hugsim_sys
+from pathlib import Path as _HugsimNativePath
+_hugsim_repository = next((p for p in _HugsimNativePath(__file__).resolve().parents if (p / "integrations/_shared/paths.py").is_file()), None)
+if _hugsim_repository is None:
+    raise RuntimeError("Repository root missing: integrations/_shared/paths.py")
+if str(_hugsim_repository) not in _hugsim_sys.path:
+    _hugsim_sys.path.insert(0, str(_hugsim_repository))
+from integrations._shared.paths import Path as _HugsimPath, portable_path as _hugsim_path, expand_paths as _hugsim_expand
+Path = _HugsimPath
+
+import sys
+pass  # Path is provided by the portable boundary above
+P=Path(__file__).resolve().parent
+sys.path.insert(0,str(P))
+OUTPUT=Path(__file__).resolve().parent/'envelope_evidence'
+GUARDS=None
+from bootstrap import *
+import argparse,copy,json,pickle,numpy as np
+from planning_guard import PlanningGuard as NumpyGuard,rectangle_separation
+from speed_policy import PlanningGuard
+from time_local_motion import tube_boxes
+from empty_bounded_geometry import TemporalOccupancy,polygon_clearance,projected_cell
+from empty_controller import sweep_allowance
+from depth_ambiguity import DepthAmbiguity
+from occupancy_protocol import unpack
+from runtime_configuration import load_vehicle_config
+def integrate_state(state,action,dt,wheelbase):
+ # Reconstruct native velocity-first bicycle integration independently.
+ state=np.asarray(state,dtype=float);action=np.asarray(action,dtype=float)
+ next_speed=state[3]+dt*action[0];next_steer=state[4]+dt*action[1]
+ next_xy=state[:2]+dt*next_speed*np.array([np.sin(state[2]),np.cos(state[2])])
+ next_yaw=state[2]+dt*next_speed*np.tan(next_steer)/wheelbase
+ return np.r_[next_xy,next_yaw,next_speed,next_steer]
+parser=argparse.ArgumentParser();parser.add_argument('--steps',type=int,nargs='+',default=[0,7,29]);parser.add_argument('--results',type=Path,required=True);parser.add_argument('--seed');args=parser.parse_args();v=load_vehicle_config();source=CR/'phase26/bridge/closed_loop_integration/runs/20261107T145401Z/uniad_worker';out=args.results;rows=[]
+def proposal(guard,states,times,full=False):
+ keep=np.array([i for i in range(len(guard.hard_boxes)) if i not in guard.local_motion],dtype=int);remaining=copy.copy(guard);names=('hard_boxes','hard_margins','hard_envelopes','hard_radii','hard_ages','hard_oriented','hard_heading_ranges')
+ for name in names:setattr(remaining,name,getattr(guard,name)[keep])
+ gaps=NumpyGuard.clearance(remaining,states,times)
+ for i,cert in guard.local_motion.items():
+  boxes=tube_boxes(guard.hard_boxes[i],cert,times,guard.hard_radii[i]);gap=np.diag(rectangle_separation(states,boxes,np.zeros(len(times)),v.half_width_m,v.half_length_m))-guard.hard_margins[i];single=copy.copy(guard)
+  for name in names:setattr(single,name,getattr(guard,name)[i:i+1])
+  gap[times==0]=NumpyGuard.clearance(single,states,times)[times==0]
+  if not full:gap[times>guard.motion_lease+1e-9]=np.inf
+  gaps=np.minimum(gaps,gap)
+ if full and guard.expired_memory_count:gaps=np.minimum(gaps,NumpyGuard.clearance(guard.expired_history,states,times))
+ return gaps
+for index in args.steps:
+ name='step_%03d'%index;folder=source/name;result=_hugsim_expand(json.loads((out/(name+'_result.json')).read_text()));selected=next((r for r in result['trials'] if r['seed']==args.seed and r['feasible']),None) if args.seed else result.get('selected');assert selected is not None,'No selected plan for '+name;assert result['forecast_recovery'] is False
+ report=_hugsim_expand(json.loads((folder/'guard_memory_report.json').read_text()))
+ with (folder/'sensor_metadata.pkl').open('rb') as f:info=pickle.load(f)
+ with np.load(folder/'perception.npz') as z:occ,_=unpack(z)
+ states=np.asarray(selected['states']);controls=np.asarray(selected['controls']);times=np.arange(len(states))*v.dt;interval=selected['control_interval_s'];offset=np.asarray(info['model_lidar_frame']['virtual_to_ego'])[:2,3];independent=[np.r_[-offset,0.,info['ego_velo'],info['ego_steer']]];actions=[]
+ for k in range(len(states)-1):
+  if result['guard']['control_interpolation']=='constant':action=controls[min(int(np.floor((k*v.dt+1e-9)/interval)),5)]
+  else:action=np.array([np.interp(k*v.dt,np.arange(6)*interval,controls[:,j]) for j in range(2)])
+  independent.append(integrate_state(independent[-1],action,v.dt,v.wheelbase_m));actions.append(action)
+ np.testing.assert_allclose(independent,states,rtol=0.,atol=1e-10)
+ depth=report['observed_depth_geometry'];unknown=report['unknown_visibility_geometry'];r=info['explicit_l2g_r_mat'];voxel=np.isclose(depth.get('voxel_resolution_m',-1),.5)
+ temporal=TemporalOccupancy(np.asarray(occ).reshape(1,5,200,200),v,observed_points=report['observed_depth_obstacles_xy'],observed_point_radius=depth['voxel_half_diagonal_m'],observed_cell_rotation=r if voxel else None,unknown_points=report['unknown_visibility_obstacles_xy'],unknown_point_radius=unknown['point_radius_m'],unknown_cell_rotation=r if unknown.get('policy')=='endpoint_supported_unknown_visibility_v2' and voxel else None)
+ braking=DepthAmbiguity(report,info,v).stop_states(states[0],np.array([-min(2.,states[0,3]/.1),0.]))
+ guard=PlanningGuard(report,v,braking,np.arange(len(braking))*.1,current_occupancy=np.asarray(occ).reshape(5,200,200)[0])
+ def clear(query,full=False):
+  clock=np.arange(len(query))*.1;return np.minimum(temporal.clearance(query,clock),proposal(guard,query,clock,full=full))-sweep_allowance(query,v)
+ def physical(query):
+  acc=np.diff(query[:,3])/.1;rate=np.diff(query[:,4])/.1
+  return bool(np.isfinite(query).all() and query[:,3].min()>=-1e-5 and query[:,3].max()<=v.max_speed_mps+1e-5 and np.abs(query[:,4]).max()<=np.deg2rad(v.max_steer_degrees)+1e-5 and acc.min()>=v.min_acc_mps2-1e-5 and acc.max()<=v.max_acc_mps2+1e-5 and np.abs(rate).max()<=np.deg2rad(v.max_steer_rate_degrees)+1e-5)
+ budget=DepthAmbiguity(report,info,v);witnesses=[]
+ for mode in ['hold','unwind','left','right']:
+  query=budget.stop_states(states[0],np.asarray(actions[0]),mode);expanded=np.c_[query,np.full(len(query),v.half_width_m),np.full(len(query),v.half_length_m)];gaps=polygon_clearance(expanded,budget.points,projected_cell(r),v.clearance_margin_m+1e-7)-sweep_allowance(query,v);gap=float(np.minimum(gaps,clear(query,full=True)).min());witnesses.append(dict(mode=mode,gap_m=gap,physical_bounds=physical(query),states=query.tolist()))
+ best=max(witnesses,key=lambda row:row['gap_m']);gap=float(clear(states).min());row=dict(step=index,first_action=actions[0].tolist(),minimum_hard_gap_m=gap,physical_bounds=physical(states),braking_witness=best,passed=gap>=-1e-5 and physical(states) and best['gap_m']>=-1e-5 and best['physical_bounds'],future_ambiguous_surface_path_certified=False);rows.append(row)
+ # Independently check the forward/comfort envelope, without calling its
+ # production constraint helper.
+ lat=np.abs(states[:,3]**2*np.tan(states[:,4])/v.wheelbase_m);yaw_rate=np.abs(states[:,3]*np.tan(states[:,4])/v.wheelbase_m)
+ forward_ok=bool(np.abs(states[:,2]).max()<=np.pi/2+1e-5 and np.diff(states[:,1]).min()>=-1e-5 and lat[1:].max()<=max(4.89,float(lat[0]))+1e-5 and yaw_rate[1:].max()<=max(.95,float(yaw_rate[0]))+1e-5)
+ corridor=selected.get('corridor');side_ok=True
+ if corridor:
+  dx=corridor['sign']*(states[:,0]-states[0,0]);required=max(0.,abs(corridor['displacement_m'])-.2);anchor=corridor['anchor_index'];before_passing=states[anchor:,1]<=corridor['release_forward_m']-1e-5
+  side_ok=bool(dx[1:].min()>=-.2-1e-5 and dx[anchor]>=required-1e-5 and np.all(dx[anchor:][before_passing]>=required-1e-5))
+ row.update(forward_only_verified=forward_ok,max_lateral_acceleration_mps2=float(lat.max()),side_corridor_verified=side_ok)
+ row['passed']=row['passed'] and forward_ok and side_ok
+ (out/(name+('_'+args.seed if args.seed else '')+'_independent_check.json')).write_text(json.dumps(row,indent=2)+'\n');print(json.dumps({k:v for k,v in row.items() if k!='braking_witness'}|{'braking_mode':best['mode'],'braking_gap_m':best['gap_m']},indent=2))
+(out/('independent_checks'+('_'+args.seed if args.seed else '')+'.json')).write_text(json.dumps(dict(passed=all(row['passed'] for row in rows),rows=rows,new_gpu_executed=False),indent=2)+'\n');assert all(row['passed'] for row in rows)

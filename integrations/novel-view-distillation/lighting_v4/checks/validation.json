@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "unit_tests": 7,
+  "source_observations": 27,
+  "source_holdout_observations": 6,
+  "expected_gpu_renders": 39,
+  "real_checkpoint_cpu_cases": 12,
+  "training_frames_per_camera": 180,
+  "original_lighting_denominator": 596,
+  "code": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/framework_v2.py": "fb4c7d25f80f907e7e3d47c296d32f132e467f5e3ecd8d851e2292ebde1b42b8",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/run.sh": "e3834ef3a90862c25b3ed69fc56099883f4ad3bfd458a6d4f8b4aec1c7a4e52a",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/test_quality.py": "af44f83db34a8de90be109a91051368e1e5dfbe55e5c76e55dbf54da1ecac949",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/quality_policy.py": "ea65e9a9b8dafd4b4475fa13669c457081eeb8834ed8ba27edbdcf7a15eea741",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/experiment.py": "922336880a85d2f8315499352db58d6093a201838d5e5bfcf42874255e9b431b",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/contracts.py": "65f364571d8c2b210025dbd0f9abc0707f5e8732b2d9fbcc11a319011d2b7d7d",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/pipeline.py": "5490efc2a4a904af1f8be1364c65c5d985fcfd0b443db0c618a8fb14cd368dfe",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/lighting_v4/run.sh": "a0caa9aaf435d027242ac81da97e197088576f099b6a6869f5023b724b94b70e",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/lighting_v4/test_lighting.py": "2289e1b59bbf3314bcfac7054e5e175d2ed7b4d39c689c75d8f0fd9820df33d3",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/lighting_v4/evaluate.py": "6821caf8e770cfa7ad17d2e790663fbd0d6c5b25aefe307fbb7699fbc4bce19f",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/lighting_v4/policy.py": "2190c6fea820267b18ff95940f7011fcc759e948cdb5af7e54612f83e872ef84",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/conditioning_v3/check_ids.py": "de261c8055c8d9a7f39c97cd196c0db679153b11356f2c139149d10efff05f27"
+  },
+  "source_checkpoint": {
+    "path": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_551/20260419_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+    "sha256": "5f82082713be522e0a88972a6ea42d111ee3b82e85a58226ba72aaf3e948ac32"
+  },
+  "weights_updated": false,
+  "geometry_changed": false,
+  "gpu_executed": false,
+  "ready_for_gpu_comparison": true,
+  "pseudo_gt_regenerated": false,
+  "distillation_restarted": false
+}

@@ -1,0 +1,3 @@
+{
+  "uniad_startup_probe": "${HUGSIM_ROOT}/integrations/sr-hugsim/configs/uniad_startup_probe.json"
+}

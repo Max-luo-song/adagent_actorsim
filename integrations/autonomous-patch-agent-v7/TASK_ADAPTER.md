@@ -1,0 +1,13 @@
+# 登记下一任务
+
+队列由主机配置冻结，模型不能修改。每项至少包含id、scene、edit、ready；可运行的新任务还需adapter={module:{path,sha256},factory:"make_adapter"}。模块为主机审核的项目代码，运行/恢复时检查哈希；不是LLM返回的脚本。默认占位项ready=false，不能冒用551资产到其他场景。
+
+factory(task,config,checkpoint)返回适配器；stages/build/attempt/results/validate_stage/classify_failure与现有HUGSIMAdapter协议相同。新任务还需acceptance、collect_evidence、activate_task、verify_task_admission、retention_check。恢复工厂用checkpoint中的champion和active_task_spec重建同一任务；不得重新初始化计数或跑错场景。
+
+activate_task(task,carried_champion,completed_tasks,remaining_budget)仅加载已准入的匹配新基线，不得偷偷启动未计预算的API/GPU。返回恰含task_id、admission资产、champion、reference_metrics、registry（可为null）、target_case、validated。真实admission需场景/编辑一致、fresh_baseline=true、carried_policy_sha256与继承策略一致；champion的代码pins和完整report/summary/contract必须可验。verify_task_admission负责对应框架的原生收据核验，不能只凭ready标志。
+
+新基线case列表从真实metrics派生并锁入模型schema，LLM无权换scene/edit/seed/评分器。不同命名不改变原生评分与物理门禁。视频适配未登记时记录缺失，不伪造视频。
+
+retention_check(bundle,attempt,archives)真实运行需返回passed=true、candidate_pins、tasks映射。每个历史任务需evaluation资产和新候选在该任务上的metrics；evaluation绑定task_id和同一candidate_pins。逐项验证report/summary/contract、相同实验输入、完整无碰撞/越界/未恢复停车、HDScore和PDMS不下降，以及既有进度/停车/横向门槛。布尔true不构成真实证据。模拟测试可用布尔结果，但整次运行标为simulation_only，不能作为GPU验证。
+
+任务注册/新基线准备尚缺的工作会显示waiting_next_task和next_task_request.json；不会自动编造准入或重用不匹配的历史分数。

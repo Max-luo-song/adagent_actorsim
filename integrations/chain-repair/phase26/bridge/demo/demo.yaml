@@ -1,0 +1,37 @@
+# 统一功能演示配置（诊断模式、未经认证）
+# 原则：纯渲染/环境段不调用 MPC；短闭环默认跟踪直通配置（无避碰、不等价声明）；
+# 连续运行与离线分段在产物中分别标注 segment_kind: continuous | offline。
+schema: sr_arch_demo_v1
+scene: waymo552
+checkpoint: ${oc.env:HUGSIM_EXTERNAL_ROOT,./assets/external}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_552/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth
+inputs: ${oc.env:HUGSIM_ROOT,.}/outputs/waymo552_three_setup_20261018_043131/inputs
+segments:
+  s1_full_scene:
+    title: 全场景加载与固定帧渲染（框架渲染器）
+    kind: offline
+    module: framework_render
+    frames: [80, 81, 82]
+  s2_rigid_dynamic:
+    title: 刚体车辆运行中更新（HUGSIM pose_track，证据已有）
+    kind: continuous
+    module: pose_track
+  s3_smpl_pedestrian:
+    title: SMPL 行人动态
+    kind: offline
+    module: smpl
+  s4_weather:
+    title: 天气变化（WeatherEdit 离线预处理链）
+    kind: offline
+    module: weather
+  s5_difix:
+    title: DiFix 新视角修复（离线支路）
+    kind: offline
+    module: difix
+  s6_sensors:
+    title: 传感器输出（相机已有证据；LiDAR GPU 待验证）
+    kind: offline
+    module: sensors
+  s7_closed_loop:
+    title: 短闭环（跟踪直通控制，5 步；无避碰优化，不与 MPC 安全等价）
+    kind: continuous
+    module: closed_loop_tracking

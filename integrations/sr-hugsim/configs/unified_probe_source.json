@@ -1,0 +1,313 @@
+{
+  "scene": 172,
+  "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_172/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+  "source_config": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_172/20260418_lidar+cam0_1_2adstudiov_pbr_3view/config.yaml",
+  "original_data": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/tempgls/BezierGS/dataset/waymo/processed/training/172",
+  "inputs": "${HUGSIM_ROOT}/outputs/waymo172_three_setup_20261016_132050_295391/inputs",
+  "trained_cameras": [
+    0,
+    1,
+    2
+  ],
+  "camera_order": [
+    "CAM_FRONT",
+    "CAM_FRONT_RIGHT",
+    "CAM_FRONT_LEFT"
+  ],
+  "checkpoint_step": 40000,
+  "frames": 198,
+  "start_timestep": 0,
+  "path_length_m": 33.44443838140604,
+  "calibration": {
+    "0": {
+      "intrinsics": [
+        2055.556149361639,
+        2055.556149361639,
+        939.6574698861468,
+        641.0721821943271,
+        0.03231600849798887,
+        -0.3214124825527059,
+        0.0007932583953709973,
+        -0.0006257493541333847,
+        0.0
+      ],
+      "extrinsics": [
+        [
+          0.9998926849887427,
+          -0.005993208400016058,
+          0.0133678704017097,
+          1.5389142447125008
+        ],
+        [
+          0.006042236521329663,
+          0.9999751560547995,
+          -0.003630241176497072,
+          -0.02363394083934774
+        ],
+        [
+          -0.013345781499156929,
+          0.003710623431877962,
+          0.999904056092345,
+          2.115270572975561
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "1": {
+      "intrinsics": [
+        2063.7008688972,
+        2063.7008688972,
+        970.7315379934879,
+        639.9082229848484,
+        0.03119623557580319,
+        -0.34029064830905453,
+        -0.0006801050887136624,
+        0.001067963528920262,
+        0.0
+      ],
+      "extrinsics": [
+        [
+          0.7163508489464225,
+          -0.6976495294008019,
+          0.011251459486630241,
+          1.492930189258495
+        ],
+        [
+          0.6976096514642995,
+          0.7164356249377603,
+          0.007795479709391459,
+          0.09192224912318936
+        ],
+        [
+          -0.01349945915947628,
+          0.0022648282231656253,
+          0.9999063131891514,
+          2.1152105284507554
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "2": {
+      "intrinsics": [
+        2056.0892196793116,
+        2056.0892196793116,
+        935.743715862858,
+        624.4064324983569,
+        0.03490672761153742,
+        -0.3141180156718857,
+        0.0012619308568439455,
+        -0.0026996059700096116,
+        0.0
+      ],
+      "extrinsics": [
+        [
+          0.716582596758835,
+          0.6975019454936628,
+          -0.000646571666883216,
+          1.490324906589904
+        ],
+        [
+          -0.6974986018023605,
+          0.71657554968999,
+          -0.0038964176163232226,
+          -0.09385927001229258
+        ],
+        [
+          -0.002254441420230414,
+          0.003243087887177829,
+          0.9999921999069986,
+          2.1154927516413125
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "nodes": {
+    "Background": {
+      "_means": [
+        1919028,
+        3
+      ],
+      "_features_dc": [
+        1919028,
+        3
+      ],
+      "_features_rest": [
+        1919028,
+        15,
+        3
+      ]
+    },
+    "GlobalLighting": {},
+    "RigidNodes": {
+      "_means": [
+        411786,
+        3
+      ],
+      "_features_dc": [
+        411786,
+        3
+      ],
+      "_features_rest": [
+        411786,
+        15,
+        3
+      ],
+      "instances_trans": [
+        198,
+        28,
+        3
+      ],
+      "instances_quats": [
+        198,
+        28,
+        4
+      ],
+      "instances_fv": [
+        198,
+        28
+      ],
+      "instances_size": [
+        28,
+        3
+      ]
+    },
+    "TrafficLightNodes": {
+      "_means": [
+        11598,
+        3
+      ],
+      "_features_dc": [
+        11598,
+        3
+      ],
+      "_features_rest": [
+        11598,
+        15,
+        3
+      ],
+      "instances_trans": [
+        198,
+        11,
+        3
+      ],
+      "instances_quats": [
+        198,
+        11,
+        4
+      ],
+      "instances_fv": [
+        198,
+        11
+      ],
+      "instances_size": [
+        11,
+        3
+      ]
+    },
+    "DeformableNodes": {
+      "_means": [
+        16212,
+        3
+      ],
+      "_features_dc": [
+        16212,
+        3
+      ],
+      "_features_rest": [
+        16212,
+        15,
+        3
+      ],
+      "instances_trans": [
+        198,
+        24,
+        3
+      ],
+      "instances_quats": [
+        198,
+        24,
+        4
+      ],
+      "instances_fv": [
+        198,
+        24
+      ],
+      "instances_size": [
+        24,
+        3
+      ]
+    },
+    "RoadNodes": {
+      "_means": [
+        598406,
+        3
+      ],
+      "_features_dc": [
+        598406,
+        3
+      ],
+      "_features_rest": [
+        598406,
+        3,
+        3
+      ]
+    },
+    "SMPLNodes": {
+      "_means": [
+        96460,
+        3
+      ],
+      "_features_dc": [
+        96460,
+        3
+      ],
+      "_features_rest": [
+        96460,
+        3,
+        3
+      ],
+      "instances_trans": [
+        198,
+        14,
+        3
+      ],
+      "instances_quats": [
+        198,
+        14,
+        1,
+        4
+      ],
+      "instances_fv": [
+        198,
+        14
+      ],
+      "instances_size": [
+        14,
+        3
+      ]
+    },
+    "Sky": {},
+    "Affine": {},
+    "CamPose": {}
+  },
+  "original_checkpoint_written": false,
+  "rendering_validated": false,
+  "uniad_inference_validated": false,
+  "unified_interface_probe": "${HUGSIM_ROOT}/integrations/sr-hugsim/configs/unified_smoke.json"
+}

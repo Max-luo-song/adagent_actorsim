@@ -1,0 +1,117 @@
+{
+  "schema": "scene_platform_catalog_v1",
+  "drivers": {
+    "joint_safety_v7_diagnostic": {
+      "scene_id": "551",
+      "code_dir": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7",
+      "release_root": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_joint_safety_v7",
+      "frozen_sources": [
+        {
+          "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_joint_safety_v7/plan.json",
+          "sha256": "20bfae9ba258d2a9eb0620781efab4d4b25eac038a262ff595ffb9e1ac97da91"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_joint_safety_v7/checks/cpu_admission.json",
+          "sha256": "bcb0cfa2408b10cdbccc6c13b9e2723eca469b5b39fac19b6d94567655c3d465"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/compare_native.py",
+          "sha256": "2e430d74ea538d0c5315096cc64bd1bf2689b31717f9b9a7a2e8d850089df8d5"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/cpu_check.py",
+          "sha256": "bce14344368ac8611995d02038f73f9bc51d96520b7da0f63c481ee3648d5af9"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/cutin_scenario.py",
+          "sha256": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/intervention.py",
+          "sha256": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/joint_safety.py",
+          "sha256": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/native_collision.py",
+          "sha256": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/pair_diagnostics.py",
+          "sha256": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/pipeline.py",
+          "sha256": "bc4d5f0c03d3e53c2d97efc6d7ebbe5a7f1e5488837ca7cf933a342b6f8568d6"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/probe_native.py",
+          "sha256": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/runtime.py",
+          "sha256": "01d67bc2cf5adb76f13ac5706551cfc7ea8bfbedea1dc6c8d610a77809beec0d"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/tests/test_cutin.py",
+          "sha256": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/tests/test_joint_safety.py",
+          "sha256": "625a943433347b56d1e15bc438f8d867c681144b593b308927ce20f0adbc21c3"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/tests/test_native_collision.py",
+          "sha256": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/worker.py",
+          "sha256": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/integrations/light-joint-safety-v7/run.sh",
+          "sha256": "7686906af80de31e38642520bfa70b164919e0ead1f7c71570a5300f3dea5ada"
+        }
+      ],
+      "dt_s": 0.1,
+      "source_start_frame": 10,
+      "source_end_frame": 198,
+      "max_control_steps": 188,
+      "initial_speed_mps": 4.0,
+      "sensor_policy": "source_original_rig",
+      "controller_owner": "separate driving/patch workstream",
+      "native_collision_postprocessor_required": true,
+      "heavy_obstacle_mpc": false,
+      "scope": "diagnostic engineering integration; no safe-driving or normal-scene nonregression certification",
+      "existing_GPU_controls": 188,
+      "existing_GPU_anomaly": true,
+      "existing_GPU_termination": "source_scene_time_window_complete",
+      "safe_driving_certified": false
+    }
+  },
+  "programs": {
+    "scene551_native3_cutin_stop_v1": {
+      "scene_id": "551",
+      "object_id": "native:RigidNodes:3",
+      "driver_profile": "joint_safety_v7_diagnostic",
+      "operation": "set_actor_trajectory",
+      "interpretation": "scripted existing-vehicle trajectory, no insertion",
+      "resources": [
+        {
+          "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_joint_safety_v7/scenario/target_track.npz",
+          "sha256": "67060b9569c2ce209803cd52c6f2e10cdbf992d0e9d0c96cde282ff626ebe2f6"
+        },
+        {
+          "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_joint_safety_v7/scenario/scenario.json",
+          "sha256": "e585bf518e5e329902f29c7b66d2f71e06b7aab313c57b2a74eaa11ff5333fb9"
+        }
+      ],
+      "source_activation_s": 1.5,
+      "local_activation_s": 0.5,
+      "lane_change_duration_s": 2.8,
+      "stop_local_time_s": 5.3
+    }
+  }
+}

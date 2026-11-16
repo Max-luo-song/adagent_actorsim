@@ -1,0 +1,4 @@
+{
+  "schema": "uniad_startup_probe_v1",
+  "packet": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-uniad-172-552-20261021-v1/result/sequences/172/baseline/frame_000/observation.pkl"
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "scene_task_v1",
+  "task_id": "legacy_insert_preview",
+  "scene_id": "552",
+  "weather": "clear",
+  "edits": [{"operation":"insert","object_id":"managed:platform_car","asset_id":"realcar_white_20240604","placement_id":"scene552_ahead"}],
+  "previews": [{"kind":"camera","args":{"source_frame":10}}],
+  "verification_frames": [10],
+  "reset_after": true
+}

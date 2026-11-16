@@ -1,0 +1,77 @@
+{
+  "schema": "gaussian_center_support_calibration_v1",
+  "geometry_schema": "asset_geometry_x_longitudinal_y_down_z_lateral_wlh_v1",
+  "asset": "/inspire/hdd3/project/intelligent-driving-agent/guoluosong-253108120129/hugsim-reproduction/data/3DRealCar/2024_06_04_13_44_39",
+  "rule": {
+    "opacity_threshold": 0.5,
+    "center_quantiles": [
+      0.005,
+      0.995
+    ],
+    "rotate_to_pca": false,
+    "scale_geometry": false,
+    "dimensions_source": "opaque_gaussian_centers_not_physical_truth"
+  },
+  "source_files": {
+    "gs.pth": {
+      "bytes": 233167821,
+      "sha256": "cb6f0baf5713f8a20f35010baa4cf61d869275b8d20e0bd96de5b1ef6d827b9b"
+    },
+    "wlh.json": {
+      "bytes": 64,
+      "sha256": "470c32017bdec2be47913a7cfb19940654819123369d137f3342ae857b79b1d0"
+    }
+  },
+  "support": {
+    "bounds_raw": [
+      [
+        -2.416417179107666,
+        -1.3954540252685548,
+        -0.9080627250671387
+      ],
+      [
+        2.4243686962127686,
+        0.014114227294922174,
+        0.9215914130210877
+      ]
+    ],
+    "raw_recenter_xz": [
+      0.003975758552551278,
+      0.006764343976974507
+    ],
+    "wlh": [
+      1.8296541380882263,
+      4.840785875320435,
+      1.409568252563477
+    ],
+    "bottom_y": 0.014114227294922174,
+    "opaque_points": 113313
+  },
+  "geometry_contract": {
+    "schema": "asset_geometry_x_longitudinal_y_down_z_lateral_wlh_v1",
+    "axes": {
+      "x": "longitudinal",
+      "y": "down",
+      "z": "lateral"
+    },
+    "dimension_order": [
+      "width",
+      "length",
+      "height"
+    ],
+    "unit": "meter",
+    "wlh": [
+      1.8296541380882263,
+      4.840785875320435,
+      1.409568252563477
+    ],
+    "bottom_y": 0.014114227294922174,
+    "signed_front_verified": false,
+    "physical_dimensions_independently_verified": false,
+    "real_wheel_contacts_verified": false
+  },
+  "independent_physical_calibration": false,
+  "n1_certified": false,
+  "prediction_data_used": false,
+  "scene_data_used": false
+}

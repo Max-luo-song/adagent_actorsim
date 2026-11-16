@@ -1,0 +1,91 @@
+# This registered comparison uses frozen COMPLETED v12 runs, never native-off.
+BASE_RELEASE=P26/'light_intent_recovery_v12_r2'
+BASE_CODE=ROOT/'integrations/light-intent-recovery-v12-r2'
+BASE_MATRIX=P26/'patch_v12_validation_r2_v1'
+
+def baseline_snapshot(case):
+ work=BASE_MATRIX/'cases'/case/'on';receipt=read(work/'completion.json')
+ old=read(BASE_MATRIX/'matrix.json')
+ if receipt['source_pins']!=old['code_sha256']:raise ValueError('Baseline validation source identity mismatch')
+ for f,h in old['code_sha256'].items():
+  if sha(f)!=h:raise ValueError('Baseline comparison code changed: '+f)
+ for key in ('report','summary','contract'):
+  a=receipt[key]
+  if sha(a['path'])!=a['sha256']:raise ValueError('Baseline completed artifact changed')
+ r=read(receipt['report']['path'])
+ if r.get('real_closed_loop') is not True or r.get('model_weights_unchanged') is not True or r.get('validation_patch')!='on' or r['status']!='completed' or len(r['trace'])!=188:raise ValueError('Not a healthy completed full-v12 baseline')
+ if r['experiment_plan']!=asset(work/'plan.json'):raise ValueError('Baseline plan changed')
+ return dict(work=str(work),completion=asset(work/'completion.json'),report=asset(receipt['report']['path']),summary=asset(receipt['summary']['path']),contract=asset(work/'contract.json'),actor_tracks=asset(work/('B' if CASES[case]['edited'] else 'A')/'actor_tracks.npz'))
+
+def base_check():
+ spec=importlib.util.spec_from_file_location('_paired_baseline_v12_provider',BASE_CODE/'pipeline.py');p=importlib.util.module_from_spec(spec);spec.loader.exec_module(p);p.check(BASE_RELEASE)
+ sys.path[:0]=[str(LOCAL),str(CODE),str(ROOT/'integrations/light-map551-v4'),str(ROOT/'integrations/light-cutin-diagnostic')]
+
+def prepare(root):
+ root=Path(root)
+ if (root/'matrix.json').exists():return check(root)
+ admission=read(root/'checks/cpu_tests.json')
+ if not admission['passed'] or admission['code_sha256']!=pins():raise ValueError('Current harness CPU tests required')
+ base_check();provider();base=read(RELEASE/'plan.json');cases={};receipts={}
+ for name,case in CASES.items():
+  if not case['ready']:
+   cases[name]=dict(**case,status='unavailable',reason='Scene-matched map/evaluator not admitted; never use scene551 assets here');continue
+  baseline=baseline_snapshot(name);work=root/'cases'/name/'on'
+  for file in COPY:
+   dst=work/file;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes((RELEASE/file).read_bytes())
+  plan=copy.deepcopy(base);plan.update(validation_case=name,validation_patch='on',comparison_kind='v12_full_patch_vs_v13_full_patch',new_A_required=True,user_requested_direct_B=False)
+  for key,file in [('scene','scene_manifest.json'),('scenario','scenario/scenario.json'),('baseline','baseline_freeze.json'),('target_track','scenario/target_track.npz')]:plan['assets'][key]=asset(work/file)
+  write(work/'plan.json',plan)
+  contract=dict(scene=551,edited=case['edited'],seed=base['seed'],controls=base['controls'],initial_context=base['initial_context'],scene_manifest=sha(work/'scene_manifest.json'),map=sha(work/'map/map.json'),scenario=sha(work/'scenario/scenario.json'),target_track=sha(work/'scenario/target_track.npz'),vehicle=asset(read(work/'scene_manifest.json')['vehicle_config']),worker=sha(CODE/'worker.py'),native_collision=base['native_collision_policy'],tracker=sha(ROOT/'integrations/light-cutin-diagnostic/tracker.py'),evaluator=sha(ROOT/'integrations/light-map551-v4/scoring.py'),termination=base['termination'],source_assets={k:v['sha256'] for k,v in base['assets'].items()},patch='on',fresh_history=True,score_kind='executed_path',comparison_version='v13')
+  from protocol import validate_contracts
+  left=read(baseline['contract']['path']);left['comparison_version']='v12';validate_contracts(left,contract)
+  write(work/'contract.json',contract)
+  cases[name]=dict(**case,status='prepared',arms=dict(on=str(work)),baseline_v12=baseline)
+  for f in [*COPY,'plan.json','contract.json']:receipts[str(work/f)]=sha(work/f)
+ matrix=dict(schema='v12_to_v13_paired_validation_v1',created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),cases=cases,criteria=LIMITS,code_sha256=pins(),frozen_files=receipts,source_release=asset(RELEASE/'plan.json'),baseline_release=asset(BASE_RELEASE/'plan.json'),source_patch_cpu=asset(RELEASE/'checks/cpu_admission.json'),harness_cpu=asset(root/'checks/cpu_tests.json'),baseline='existing completed full v12, frozen outcomes and fresh full history in those recorded episodes',patch='new v13 full patch; same exogenous conditions; fresh closed loop',archived_run_reuse=True,archived_controls_replayed=False,formal_score_available=False)
+ write(root/'matrix.json',matrix);return dict(prepared=True,new_episodes=2,completed_v12_baselines_reused=2,missing_cases=[k for k,v in cases.items() if not v['ready']],GPU_executed=False)
+
+def check(root):
+ root=Path(root);m=read(root/'matrix.json')
+ if m['code_sha256']!=pins() or m['criteria']!=LIMITS:raise ValueError('Frozen comparison harness/criteria changed')
+ for key in ('source_release','baseline_release','source_patch_cpu','harness_cpu'):
+  a=m[key]
+  if sha(a['path'])!=a['sha256']:raise ValueError('Comparison admission changed')
+ for f,h in m['frozen_files'].items():
+  if sha(f)!=h:raise ValueError('Candidate exogenous input changed: '+f)
+ base_check();provider()
+ from protocol import validate_contracts
+ for name,c in m['cases'].items():
+  if c['ready']:
+   if baseline_snapshot(name)!=c['baseline_v12']:raise ValueError('Frozen baseline receipt changed')
+   left=read(c['baseline_v12']['contract']['path']);left['comparison_version']='v12';validate_contracts(left,read(Path(c['arms']['on'])/'contract.json'))
+ return dict(verified=True,new_episodes=2,completed_v12_baselines_reused=2,global_patch_validated=False)
+
+def summarize(root):
+ root=Path(root);m=read(root/'matrix.json');results={};details={}
+ for name,c in m['cases'].items():
+  if not c['ready']:results[name]=dict(status='unavailable',passed=False,reason=c['reason']);continue
+  base=baseline_snapshot(name);left=result(base['work'],c['edited']);right=result(c['arms']['on'],c['edited'])
+  if left is None:raise ValueError('Completed baseline disappeared')
+  left['contract']['comparison_version']='v12'
+  if right:
+   right['contract']['comparison_version']='v13'
+   import numpy as np
+   folder='B' if c['edited'] else 'A'
+   with np.load(Path(base['work'])/folder/'actor_tracks.npz') as a,np.load(Path(c['arms']['on'])/folder/'actor_tracks.npz') as b:
+    if set(a.files)!=set(b.files) or any(not np.array_equal(a[k],b[k]) for k in a.files):raise ValueError('Exogenous actor worlds differ')
+  details[name]=dict(baseline_v12=left,candidate_v13=right);results[name]=evaluate_pair(name,left,right)
+ out=dict(results=results,details=details,baseline_versions=dict(baseline='v12',candidate='v13'),**overall(results));write(root/'evaluation.json',out);return out
+
+def full(root):
+ import torch
+ if not torch.cuda.is_available():return dict(status='deferred',GPU_executed=False,reason='CUDA unavailable')
+ check(root);m=read(Path(root)/'matrix.json')
+ for case,c in m['cases'].items():
+  if not c['ready']:continue
+  if (ROOT/'outputs/gpu_test_service/STOP').exists():raise RuntimeError('STOP present')
+  work=Path(c['arms']['on']);name='B' if c['edited'] else 'A'
+  if (work/'completion.json').exists():result(work,c['edited']);continue
+  if (work/name).exists():raise FileExistsError('Partial candidate episode retained: '+str(work))
+  subprocess.run([sys.executable,'-u','-B',str(LOCAL/'pipeline.py'),'_execute','--output',str(root),'--case',case,'--arm','on'],cwd=ROOT,check=True,pass_fds=(9,))
+ return summarize(root)

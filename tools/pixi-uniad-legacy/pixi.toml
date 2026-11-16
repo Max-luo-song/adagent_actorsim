@@ -1,0 +1,15 @@
+[workspace]
+channels = ["conda-forge"]
+name = "pixi-uniad-legacy"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.8.*"
+pip = "<24"
+setuptools = "<60"
+wheel = ">=0.45.1,<0.46"
+gcc_linux-64 = "9.*"
+gxx_linux-64 = "9.*"

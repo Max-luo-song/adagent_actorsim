@@ -1,0 +1,104 @@
+{
+  "schema": "agent_job_v1",
+  "description": "Optional actual scene switch; rejects scene552 placement inside scene551.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load552",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "first",
+        "action": "observe",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load551",
+        "action": "load_scene",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "scene_id": "551"
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "wrong_placement",
+        "action": "validate_edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load551.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "error",
+        "error_code": "placement_scene_mismatch"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "other",
+        "action": "observe",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load551.result.generation"
+          },
+          "expected_revision": 0
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    }
+  ]
+}

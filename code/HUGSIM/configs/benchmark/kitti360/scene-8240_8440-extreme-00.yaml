@@ -1,0 +1,32 @@
+mode: extreme_00
+plan_list:
+- - 3
+  - 25.0
+  - 0.07
+  - 3.05
+  - 3.0
+  - 2024_07_05_14_11_47/postprocess/shadow.pth
+  - AttackPlanner
+  - pred_steps: 20
+    ATTACK_FREQ: 10
+iteration: 30000
+sh_degree: 3
+load_HD_map: false
+white_background: false
+data_device: cpu
+data_type: kitti360
+start_euler:
+- 0.0
+- 0.0
+- 0.0
+start_ab:
+- 0.8
+- 8.0
+start_velo: 1
+start_steer: 0
+target: 60
+scene_name: 0000_8240_8440
+affine: false
+quiet: false
+ignore_dynamic: false
+unicycle: false

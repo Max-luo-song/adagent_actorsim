@@ -1,0 +1,11 @@
+{
+  "round_id": "smoke_20261112t080213",
+  "harness_pins": {
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/controller_switch.py": "0117b74965f8dff9302d9a35de8b6baababb3b05fbb4329e08fad513d93bd0c9",
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/cpu_check.py": "bd24c377b2e1cc60bb7e55438d09ed043512385f4cf1bd27ec31bb51f73ea23d",
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/pipeline.py": "fe8713f4fb303aeaf29a2953f5d1de6686eb24b08ab1074f049adcbf6275bc53",
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/protocol.py": "c248f42474bc327bf35693bef1e7bf5fbc05bcac167a46409ba984396f347d57",
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/run.sh": "f25754379a94f7c9837bd67d3c6d2a143515235d6d82575ebd918abd9f0aa069",
+    "${HUGSIM_ROOT}/integrations/patch-agent-smoke-20261112t080213-a01/tests/test_validation.py": "3e58fe416638c741119fa1d71123a77bf72cd42db0b7d1b94385b1a2c9724b01"
+  }
+}

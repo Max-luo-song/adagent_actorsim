@@ -1,0 +1,4 @@
+{
+  "control_interval_s": 1.0,
+  "global_replan_interval_s": 0.5
+}

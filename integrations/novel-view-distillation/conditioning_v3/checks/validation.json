@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "unit_tests": 4,
+  "actual_parent_manifest_verified": true,
+  "paired_observations": 27,
+  "expected_gpu_renders": 54,
+  "source_plan": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v2/runs/20261109T022852Z/plan.json",
+  "code": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/conditioning_v3/test_ids.py": "8cfcd8b5f8eff78ce2b144089cd859a2c833b47b971b609663a3b5da8424984d",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/conditioning_v3/run.sh": "427faeb73a141673d34ba15f603567ea19f518b2522a8c1ac38dade1cb19d674",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/conditioning_v3/check_ids.py": "de261c8055c8d9a7f39c97cd196c0db679153b11356f2c139149d10efff05f27"
+  },
+  "weights_updated": false,
+  "geometry_changed": false,
+  "light_time_denominator_changed": false,
+  "gpu_executed": false,
+  "ready_for_gpu_ab": true
+}

@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "author",
+    "base_version",
+    "candidate_version",
+    "evidence",
+    "decision",
+    "failure_class",
+    "supported_mechanism",
+    "unresolved",
+    "proposed_rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "failure_reason_v1"
+    },
+    "base_version": {
+      "const": "v12"
+    },
+    "candidate_version": {
+      "const": "v13"
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "candidate_patch",
+        "diagnostics_required",
+        "no_supported_failure"
+      ]
+    },
+    "author": {
+      "type": "object",
+      "required": [
+        "role"
+      ],
+      "properties": {
+        "role": {
+          "const": "acting_llm_assistant"
+        }
+      }
+    },
+    "failure_class": {
+      "type": "string"
+    },
+    "supported_mechanism": {
+      "type": "string"
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proposed_rule": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

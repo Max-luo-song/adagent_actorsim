@@ -1,0 +1,9 @@
+{
+  "schema": "edited_hugsim_closed_loop_v1",
+  "driver": "framework_memory551_geometry_v1",
+  "edits": [
+    {
+      "source_insert": true
+    }
+  ]
+}

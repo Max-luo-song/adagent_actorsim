@@ -1,0 +1,10 @@
+{
+  "schema": "uniad_runtime_cache_v1",
+  "enabled": true,
+  "manifest": "/inspire/hdd3/project/intelligent-driving-agent/guoluosong-253108120129/hugsim-reproduction/outputs/uniad_startup_fix_20261022/runtime_bundle_v1/manifest.json",
+  "checkpoint": {
+    "bytes": 996345538,
+    "sha256": "0ad0c2f5dc9788a41c313305779ea49346aeb742d1f6bb5ad25c46f9beffc990",
+    "mtime_ns": 1791629900534813466
+  }
+}

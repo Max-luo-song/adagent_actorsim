@@ -1,0 +1,4 @@
+{
+  "schema": "unified_uniad_replay_v1",
+  "render_report": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-uniad-172-552-20261021-v1/result/run_report.json"
+}

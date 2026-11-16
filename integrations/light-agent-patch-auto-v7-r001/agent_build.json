@@ -1,0 +1,36 @@
+{
+  "request": "5a4b290f081864a048057389c0a61b409457e7b3ea039c92859bd7a805f30418",
+  "code_pins": {
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/compare_native.py": "2570122e840fa8b913df2c0dd9a08ce4e179a929824fcdb82f89553a5ec47913",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/cpu_check.py": "65be2e92cc00fd87ad0f116377bddc19d8edddc4cfc574689ec2cbe56e11ae7d",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/cutin_scenario.py": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/intervention.py": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/joint_safety.py": "56078495cc100dcc0add3efe65763d0b504da9e270c63f6e0181ded4b46240d2",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/joint_safety_v7.py": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/native_collision.py": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/observation_evidence.py": "2fbb4f74e0af0df55c83fb1d0f8ea78f0633b16755e0867a9f6faabe15460431",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/pair_diagnostics.py": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/pipeline.py": "84d7559cfdd037bfd44f99e10c06b7f57942450e4c713cbc9c91d064181ddb07",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/probe_native.py": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/reference_adapter.py": "e14aa2aafd936550db80df16060060981b5e43718ee269224164c00198874bca",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/reference_join.py": "a0345270747a27dd495b4f6562a3539eb28ed72d9a71d0ba84b93d168e8533eb",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/risk_memory.py": "3ee9fa466afecd916fa3864a89f570c758f93f2091f0a76e6b7d00d52f699e3b",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/run.sh": "0ba3c688ce84889a94f137079d77e50b08cb0f11290833278c8b6a276b3c2e76",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/runtime.py": "f0913ae8b1c7bbe40c5667022fa32c77a873b86231ad1c31a8c81298dab7bf55",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/smpl_runtime.py": "9854d6029baebf650dc5e8523886115505dde958b9abf1aa9e8245e4460c27d5",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_agent_patch_auto_v7_r001.py": "c763a768a0b6912aee460a0c33e42e02c294c611b5e99289884765b1b8fda568",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_cutin.py": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_evidence_control.py": "b200bb58f602f7086e4847e386fe2535efc471aaed3a47b984cde4cb8d9620c5",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_intent_recovery.py": "d7a287874331497241e29a22e1e9b99e94fc6f30bfb908b3be580b4475558eb1",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_joint_safety.py": "779a23ae90249922cfc8419ac0bb3ab5cac16361996f4765e2a8f99702077daf",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_native_collision.py": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_reference_join.py": "f62d0a1ad79091395d05c79328e08b05ecc10cc90469b26f9af713245e3c346f",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_repair.py": "acfd61d940ae6855b72e4af2ded42b697233d4d1bfae2a0ef305e4cd4326be9b",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_risk_memory.py": "f7569c405470b9542d0d7c34a95eb16f6a07dec76f3dafc12c9a80c065b19dae",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/tests/test_risk_provenance.py": "d068cee3cd2f8a058005ab50913a3baa7fe38d0ed067c36b7bd9fb61eb8be7fa",
+    "${HUGSIM_ROOT}/integrations/light-agent-patch-auto-v7-r001/worker.py": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+  },
+  "changed_methods": [
+    "JointReference.rollout"
+  ]
+}

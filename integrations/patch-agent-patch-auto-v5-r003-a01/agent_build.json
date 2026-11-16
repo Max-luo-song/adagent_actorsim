@@ -1,0 +1,11 @@
+{
+  "round_id": "patch_auto_v5_r003",
+  "harness_pins": {
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/controller_switch.py": "0117b74965f8dff9302d9a35de8b6baababb3b05fbb4329e08fad513d93bd0c9",
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/cpu_check.py": "bd24c377b2e1cc60bb7e55438d09ed043512385f4cf1bd27ec31bb51f73ea23d",
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/pipeline.py": "5df6857bc23866708d116c72c4cab4d5f729fdb58da67ec389a1982c109b4257",
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/protocol.py": "7eade109d3b7b62b9b05753ee6cca4cdb12017134c7cfb76531446dd559de6e5",
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/run.sh": "5c99ac5e7c0493b0a7e978b0bbf30dd4b3426eec9a8fa7553755731b19be6630",
+    "${HUGSIM_ROOT}/integrations/patch-agent-patch-auto-v5-r003-a01/tests/test_validation.py": "ccd6e10feb6714363a9020dcb0e288c8898cc146e4bbae2d1625a895c10c3801"
+  }
+}

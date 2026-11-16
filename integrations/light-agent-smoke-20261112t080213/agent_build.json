@@ -1,0 +1,33 @@
+{
+  "request": "b649a42518660ad5e48dfc1162e583f44cd5a0ffda4d21a115fbf9324f7c5ebc",
+  "code_pins": {
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/compare_native.py": "9e1a398ab7d131be5200cbc0565b5539359dfae2597ddac98fe21c4fad20648c",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/cpu_check.py": "b43db3fd904e4da1c4907b69757bf6da0c4b02d2d4f1d972307d7bcc96b28be8",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/cutin_scenario.py": "4ce842dbb7398aa758858f53cb067ff834cf26ac951f527bc784055bcd445f77",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/intervention.py": "95a71e7eb0db9cb9961ff882203203d5dca89673c0ee4ae10673aab95a5f5ed7",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/joint_safety.py": "f9f6d312110f5be335eae6e48723f8c254dad31ec6282b732594b412fe62fa62",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/joint_safety_v7.py": "2d49f04f987db91d844fbe6b82d67d0b434e510af34402858fc673a95b9d11e1",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/native_collision.py": "fe40515bb1eee43e95c7bdc9a83064617e49f35582cef29e95a95ffc1cb5dfea",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/observation_evidence.py": "2fbb4f74e0af0df55c83fb1d0f8ea78f0633b16755e0867a9f6faabe15460431",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/pair_diagnostics.py": "2560f0bdd15149ba0c7abbe3b9e7cf470fbf1d71c55b5a49c171c87ae8072038",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/pipeline.py": "a82722bdbd030f8fd687b0c73d416430b0c21d6d55b2018902be37bcfd63fdc3",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/probe_native.py": "6b7353f7e23f68ad75475a4a20e637e8b4c31ab3bf0c1ebf771a350141888ba0",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/reference_adapter.py": "e14aa2aafd936550db80df16060060981b5e43718ee269224164c00198874bca",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/reference_join.py": "a0345270747a27dd495b4f6562a3539eb28ed72d9a71d0ba84b93d168e8533eb",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/risk_memory.py": "3ee9fa466afecd916fa3864a89f570c758f93f2091f0a76e6b7d00d52f699e3b",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/run.sh": "3774a97851a06ede5023b9304c7c8fba6eab62b7b2666477421d9b695180b49a",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/runtime.py": "f0913ae8b1c7bbe40c5667022fa32c77a873b86231ad1c31a8c81298dab7bf55",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/smpl_runtime.py": "9854d6029baebf650dc5e8523886115505dde958b9abf1aa9e8245e4460c27d5",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_cutin.py": "440194afd26e0de1e7a61b385e535569ff93b4082dee9de738f117572454b48b",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_evidence_control.py": "82217da0f306e376044bbb99202908792700392a8f606f7d51f017a161843f3d",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_intent_recovery.py": "5e6794b7cc5e1c8d2519a4575787c09dedb0c64d058704431f334de80cd0dcf9",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_joint_safety.py": "f300a0f256707ab291136dddf7c210ae9a2e51c4381e16718684fc4368a5ca69",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_native_collision.py": "cf29173447130ccde104a36d5a7e6b0f88157683b54ba78e247a462f009236a7",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_reference_join.py": "c595e3bdf608ae893158344005308e6b368aa29b8c9085cbd4bd9b613e1abb3f",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_repair.py": "43f3dc5c531c6c3e6ecd950796faaf2e2e010748ade229b7e98c6b46d89d4052",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_risk_memory.py": "5eb910a26b26a8279282c32597c6024dee4b2e814327f731f549ffde02eb6d8c",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/tests/test_risk_provenance.py": "6aae5fc1bf752f103ce2a97e933525350e987d63cb159642ae2142bbf3d72ff2",
+    "${HUGSIM_ROOT}/integrations/light-agent-smoke-20261112t080213/worker.py": "affa5cc9b992e82139bd7e95d5211ab9a24a2ae440c1d1905116d9e427f76070"
+  },
+  "changed_methods": []
+}

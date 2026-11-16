@@ -1,0 +1,240 @@
+import argparse
+import time
+import json
+from pathlib import Path
+
+import numpy as np
+import torch
+import torch.nn.functional as F
+from omegaconf import OmegaConf
+
+from hugsim.dataparser import parse_raw
+from navsim.agents.transfuser.transfuser_agent import TransfuserAgent
+from navsim.agents.transfuser.transfuser_config import TransfuserConfig
+from scipy.spatial.transform import Rotation as SCR
+
+
+def load_camera_cfg(cfg):
+    cams = OmegaConf.to_container(cfg.cams, resolve=True)
+    cam_params = {}
+
+    for cam_name, cam in cams.items():
+        def rt2pose(rot, trans):
+            pose = np.eye(4, dtype=np.float32)
+            pose[:3, :3] = SCR.from_euler(
+                "XYZ", rot, degrees=True
+            ).as_matrix()
+            pose[:3, 3] = np.asarray(trans, dtype=np.float32)
+            return pose
+
+        v2c = rt2pose(
+            cam["extrinsics"]["v2c_rot"],
+            cam["extrinsics"]["v2c_trans"],
+        )
+        l2c = rt2pose(
+            cam["extrinsics"]["l2c_rot"],
+            cam["extrinsics"]["l2c_trans"],
+        )
+
+        intrinsic = dict(cam["intrinsics"])
+        intrinsic["fovx"] = intrinsic["fovx"] / 180.0 * np.pi
+        intrinsic["fovy"] = intrinsic["fovy"] / 180.0 * np.pi
+
+        cam_params[cam_name] = {
+            "intrinsic": intrinsic,
+            "v2c": v2c,
+            "l2c": l2c,
+        }
+
+    cam_rect = np.eye(4, dtype=np.float32)
+    if "cam_rect" in cfg:
+        cam_rect[:3, :3] = SCR.from_euler(
+            "XYZ",
+            cfg.cam_rect.rot,
+            degrees=True,
+        ).as_matrix()
+        cam_rect[:3, 3] = np.asarray(
+            cfg.cam_rect.trans,
+            dtype=np.float32,
+        )
+
+    cam_align = OmegaConf.to_container(
+        cfg.cam_align,
+        resolve=True,
+    ) if "cam_align" in cfg else None
+
+    return cam_params, cam_align, cam_rect
+
+
+def target_from_route(route, num_poses, device):
+    route = np.asarray(route, dtype=np.float32)
+    ids = np.rint(np.linspace(0, len(route) - 1, num_poses)).astype(np.int64)
+    xy = route[ids]
+
+    delta = np.diff(xy, axis=0)
+    yaw = np.arctan2(delta[:, 1], delta[:, 0])
+    yaw = np.concatenate([yaw, yaw[-1:]], axis=0)
+
+    target = np.concatenate([xy, yaw[:, None]], axis=1)
+    return torch.from_numpy(target).unsqueeze(0).to(device)
+
+
+def load_sample(path, cam_params, cam_rect):
+    z = np.load(path, allow_pickle=True)
+
+    obs = {
+        "rgb": z["rgb"].item(),
+        "depth": z["depth"].item(),
+    }
+
+    info = {
+        "cam_params": cam_params,
+        "cam_rect": cam_rect,
+        "ego_pos": z["ego_pos"],
+        "ego_rot": z["ego_rot"],
+        "ego_velo": float(z["ego_velo"]),
+        "accelerate": 0.0,
+        "ego_steer": 0.0,
+        "command": int(z["command"]),
+    }
+
+    return z, parse_raw((obs, info))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--manifest", required=True)
+    parser.add_argument("--camera_cfg", required=True)
+    parser.add_argument("--checkpoint", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--epochs", type=int, default=3)
+    parser.add_argument("--lr", type=float, default=1e-5)
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--log_every", type=int, default=10)
+    args = parser.parse_args()
+
+    device = torch.device(args.device if torch.cuda.is_available() else "cpu")
+
+    camera_cfg = OmegaConf.load(args.camera_cfg)
+    cam_params, _, cam_rect = load_camera_cfg(camera_cfg)
+
+    manifest = json.loads(Path(args.manifest).read_text())
+    train_paths = [
+        Path(x["path"]) for x in manifest["train"]
+        if Path(x["path"]).exists()
+    ]
+
+    if not train_paths:
+        raise RuntimeError("manifest 中没有可用训练样本")
+
+    config = TransfuserConfig()
+    config.latent = True
+
+    agent = TransfuserAgent(
+        config=config,
+        lr=args.lr,
+        checkpoint_path=args.checkpoint,
+    )
+    agent.initialize()
+    agent.to(device)
+
+    def forward_one(path):
+        z, parsed = load_sample(path, cam_params, cam_rect)
+        agent_input = parsed["input"]
+
+        features = {}
+        for builder in agent.get_feature_builders():
+            features.update(builder.compute_features(agent_input))
+
+        normalized = {}
+        for k, v in features.items():
+            if torch.is_tensor(v):
+                if k in ("camera_feature", "lidar_feature") and v.ndim == 3:
+                    v = v.unsqueeze(0)
+                elif k == "status_feature" and v.ndim == 1:
+                    v = v.unsqueeze(0)
+                v = v.to(device)
+            normalized[k] = v
+        features = normalized
+
+        predictions = agent.forward(features)
+        pred = predictions["trajectory"]
+
+        if pred.ndim == 2:
+            pred = pred.unsqueeze(0)
+
+        target = target_from_route(
+            z["expert_route"],
+            pred.shape[1],
+            device,
+        )
+
+        return pred, target
+
+    pred, target = forward_one(train_paths[0])
+    print("sample:", train_paths[0])
+    print("prediction shape:", tuple(pred.shape))
+    print("target shape:", tuple(target.shape))
+    print("dry-run loss:", float(F.l1_loss(pred, target)))
+
+    if args.dry_run:
+        return
+
+    optimizer = torch.optim.Adam(agent.parameters(), lr=args.lr)
+    agent.train()
+
+    for epoch in range(args.epochs):
+        losses = []
+
+        start_time = time.time()
+
+        for step, path in enumerate(train_paths, start=1):
+            optimizer.zero_grad(set_to_none=True)
+
+            pred, target = forward_one(path)
+            loss = F.l1_loss(pred, target)
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(agent.parameters(), 1.0)
+            optimizer.step()
+
+            loss_value = float(loss.detach().cpu())
+            losses.append(loss_value)
+
+            if step == 1 or step % args.log_every == 0:
+                elapsed = time.time() - start_time
+                speed = step / max(elapsed, 1e-6)
+                print(
+                    f"epoch={epoch + 1}/{args.epochs} "
+                    f"step={step}/{len(train_paths)} "
+                    f"loss={loss_value:.6f} "
+                    f"avg={np.mean(losses):.6f} "
+                    f"speed={speed:.2f} sample/s",
+                    flush=True,
+                )
+
+        print(
+            f"epoch={epoch + 1}/{args.epochs} complete "
+            f"samples={len(losses)} "
+            f"loss={np.mean(losses):.6f}",
+            flush=True,
+        )
+
+    state_dict = {
+        f"agent.{k}": v.detach().cpu()
+        for k, v in agent.state_dict().items()
+    }
+
+    torch.save(
+        {
+            "state_dict": state_dict,
+            "loss_type": "trajectory_l1_only",
+            "epochs": args.epochs,
+        },
+        args.output,
+    )
+    print("saved:", args.output)
+
+
+if __name__ == "__main__":
+    main()

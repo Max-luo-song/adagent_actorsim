@@ -1,0 +1,20 @@
+{
+  "172": {
+    "scene": 172,
+    "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/172",
+    "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_172/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+    "frames": 198
+  },
+  "552": {
+    "scene": 552,
+    "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/552",
+    "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_552/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+    "frames": 198
+  },
+  "621": {
+    "scene": 621,
+    "raw": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/data/waymo/processed/training/621",
+    "checkpoint": "${HUGSIM_EXTERNAL_ROOT}/adscenegraph/Omniscenegraph/tmp/outputs/waymo/waymo_621/20260418_lidar+cam0_1_2adstudiov_pbr_3view/checkpoint_final.pth",
+    "frames": 198
+  }
+}

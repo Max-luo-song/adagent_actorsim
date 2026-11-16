@@ -1,0 +1,60 @@
+{
+  "schema": "autonomous_patch_config_v1",
+  "api": {
+    "base_url_env": "PATCH_API_BASE_URL",
+    "model_env": "PATCH_MODEL",
+    "api_key_env": "PATCH_API_KEY",
+    "auth_header": "Authorization",
+    "auth_prefix": "Bearer ",
+    "response_format": "json_object",
+    "token_parameter": "max_completion_tokens",
+    "max_output_tokens": 8192,
+    "timeout_seconds": 180,
+    "max_response_bytes": 1048576
+  },
+  "seed": {
+    "code": "${HUGSIM_ROOT}/integrations/light-execution-horizon-v17-r2",
+    "release": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/light_execution_horizon_v17_r2",
+    "matrix": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_r2_v1",
+    "acceptance": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/automated_patch_workflow_v2/rounds/v17_runtime_r2/acceptance.json"
+  },
+  "reference_matrix": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v13_validation_r2_v1",
+  "evidence_roots": [
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v16_validation_v1",
+    "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/patch_v17_validation_v1"
+  ],
+  "editable_methods": [
+    "JointReference.retime_selected",
+    "JointReference.retiming_cost",
+    "JointReference.execution_benefit"
+  ],
+  "context": {
+    "max_chars": 180000,
+    "history_rounds": 4
+  },
+  "budgets": {
+    "max_rounds": 3,
+    "wall_seconds": 18000,
+    "max_api_requests": 18,
+    "max_api_tokens": 2000000,
+    "max_model_attempts_per_round": 6,
+    "max_diagnostics_per_round": 2,
+    "max_gpu_attempts": 6,
+    "max_infrastructure_attempts": 2,
+    "cpu_stage_seconds": 1800,
+    "gpu_stage_seconds": 6000,
+    "retry_delay_seconds": 15,
+    "poll_seconds": 1
+  },
+  "acceptance": {
+    "numeric_tolerance": 1e-09,
+    "original_max_hd_drop": 0.0,
+    "min_progress_ratio": 0.95,
+    "max_extra_stopped_seconds": 1.0,
+    "lateral_tolerance_m": 0.25
+  },
+  "presentation": {
+    "enabled": true,
+    "timeout_seconds": 300
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "agent_job_v1",
+  "description": "Two actual three-camera renders at identical source frame100/ego position: original recorded attitude versus common gravity-level view. No edits or driving.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "recorded_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 100,
+          "attitude_policy": "initial_ego"
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "level_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 100,
+          "attitude_policy": "gravity_level"
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "attitude": {
+            "gravity_alignment_passed": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      }
+    }
+  ],
+  "verification": {
+    "minimum_coverage": {
+      "scene_loads": 1,
+      "pre_run_previews": 2
+    }
+  }
+}

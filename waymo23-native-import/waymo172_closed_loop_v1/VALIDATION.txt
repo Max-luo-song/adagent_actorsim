@@ -1,0 +1,14 @@
+2026-10-17 local CPU validation
+
+PASS: explicit pose round trip (30 random rigid poses)
+PASS: rotating virtual LiDAR mount vs full homogeneous transformations
+PASS: reproduction of returned frame165 trajectory from rounded controls
+PASS: optimizer integration vs available Motion.advance source
+PASS: convex polygon overlap, touching, separation and exact gap examples
+PASS: atomic IPC success and error propagation
+PASS: feasible MPC in a controlled synthetic occupancy example
+PASS: all Python files parse
+
+Not run locally: CUDA rendering; UniAD checkpoint; concurrent GPU memory use;
+server end-to-end closed loop; physical vehicle steering angle; drivable area;
+formal HUGSIM collision/scoring; successful passing of the inserted vehicle.

@@ -1,0 +1,8 @@
+{
+  "scene": "waymo23",
+  "model": "uniad",
+  "steps": 10,
+  "remove_instance": 10,
+  "baseline_result": "waymo23_uniad_closed_20261015_124625_556466",
+  "edited_result": "waymo23_uniad_closed_20261015_123753_448418"
+}

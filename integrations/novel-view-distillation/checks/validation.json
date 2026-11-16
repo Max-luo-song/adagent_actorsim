@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "unit_tests": 24,
+  "cpu_training_save_reload_stage_test": true,
+  "actual_teacher_inference": {
+    "passed": true,
+    "actual_teacher_inference": true,
+    "reference_image_used": true,
+    "resolution": [
+      64,
+      64
+    ],
+    "device": "cpu",
+    "gpu_executed": false,
+    "seconds": 10.24885531514883,
+    "unet_module": "unet_2d_condition",
+    "vae_module": "autoencoder_kl"
+  },
+  "real_scene_trajectory_compile_passed": true,
+  "input_hashes_verified": true,
+  "prepared_job": null,
+  "implementation": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/teacher.py": "42ad0431b29486e1c8a47af626729eb279869de895401be5a3221c86f655cd24",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/framework.py": "fb4c7d25f80f907e7e3d47c296d32f132e467f5e3ecd8d851e2292ebde1b42b8",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/pipeline.py": "5490efc2a4a904af1f8be1364c65c5d985fcfd0b443db0c618a8fb14cd368dfe",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/run.sh": "b77b24bce425268ed1b4fc0cd095fae72c463a932443eab5bb9b949283fcadf8",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/test_pipeline.py": "bb3f03f9ebfd32dcb91f68a73b5894ce191e23b249a06cf1d5357b57aa4777be",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/contracts.py": "65f364571d8c2b210025dbd0f9abc0707f5e8732b2d9fbcc11a319011d2b7d7d"
+  },
+  "renderer_snapshot": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/corridor_scene_v4",
+  "renderer_snapshot_sha256": "9a7c066a577f0700af91799ffbab9bf92ac7a9db711e5cbfa6510c54d59472cc",
+  "gpu_executed": false,
+  "actual_framework_backward_verified": false,
+  "full_resolution_quality_verified": false,
+  "closed_loop_driving": false,
+  "runtime_checkpoint_replaced": false,
+  "ready_for_gpu_validation": true,
+  "pose_fix_validation": "${HUGSIM_ROOT}/integrations/novel-view-distillation/checks/pose_fix_validation.json",
+  "old_prepared_jobs_invalid_after_code_change": true,
+  "recovery_plan": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T023505Z/failure_audit/device_reload_plan_v2.json",
+  "completed_gpu_training_steps": 459,
+  "actual_framework_gpu_fix_verified": false
+}

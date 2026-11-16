@@ -1,0 +1,15 @@
+{
+  "schema": "cross_scene_adapter_release_v1",
+  "files": {
+    "pipeline.py": "efbaa31868a12ff858aa3c8f5402341f768af7dc3c1f45cd511049f2a079911b",
+    "bindings.py": "ffd628b0b3ed9b21436ac60600a04cf43219c0ce543d0f6676a029b561910e00",
+    "run.sh": "cead8ce205371222b94faf752aa7d2156d129ef12794da29150d588919d52a55",
+    "README.md": "2092bcdc60cffbb92e5c9acea2ca5ba1e64a75ed26733b1dd7e33cc5e117a668",
+    "support_map.py": "0ac314ddfa2aef5d2b5a2cef818c7862d76187a4ba92fbdc560d70a407c42844",
+    "tests/test_adapter.py": "7fcc8157e5d3827a3012e2de6fb21435c4369d8a294b8d0132a5e2a7a4fb0ef2"
+  },
+  "readiness": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/cross_scene_validation_v1/readiness.json",
+    "sha256": "b4b12added2651ade3d6de3833d0f9c550077193a3970724c356301741223093"
+  }
+}

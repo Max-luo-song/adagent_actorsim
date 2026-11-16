@@ -1,0 +1,27 @@
+{
+  "schema": "scene_task_v2",
+  "task_id": "scene551_cutin_lidar_scan_30",
+  "scene_id": "551",
+  "edits": [
+    {
+      "operation": "set_actor_trajectory",
+      "object_id": "native:RigidNodes:3",
+      "program_id": "scene551_native3_cutin_stop_v1"
+    }
+  ],
+  "simulation": {
+    "driver": "uniad_closed_loop",
+    "profile": "joint_safety_v7_diagnostic",
+    "control_steps": 30
+  },
+  "reset_after": true,
+  "weather": "clear",
+  "evaluation_mode": "diagnostic",
+  "sensors": {
+    "lidar": {
+      "enabled": true,
+      "provider": "gaussian_depth_scan_v1",
+      "record_every_n_steps": 1
+    }
+  }
+}

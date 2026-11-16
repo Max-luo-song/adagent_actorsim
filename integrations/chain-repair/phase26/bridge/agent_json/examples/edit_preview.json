@@ -1,0 +1,417 @@
+{
+  "schema": "agent_job_v1",
+  "description": "JSON emulates an editing agent: original preview -> validate -> insert reference car/translate native actor -> editable preview -> committed observation -> exact reset. Includes replay and three expected rejection tests; no training or driving.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "scenes",
+        "action": "list_scenes",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "assets",
+        "action": "list_assets",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load552",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "scene_id": "552",
+          "edit_revision": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "capabilities",
+        "action": "get_capabilities",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "runtime_edit": false,
+          "online_training": false,
+          "driver_connected": false
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "objects",
+        "action": "list_objects",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "before_preview",
+        "action": "preview",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 0,
+          "preview_only": true
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "validate_car",
+        "action": "validate_edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "valid": true,
+          "mutation_performed": false,
+          "would_edit_revision": 1
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "insert_car",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "replayed": false,
+        "result": {
+          "edit_revision": 1
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "insert_car",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "replayed": true,
+        "result": {
+          "edit_revision": 1
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "move_person",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 1,
+          "command": {
+            "operation": "translate",
+            "object_id": "native:SMPLNodes:0",
+            "offset_world_m": [
+              0.5,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 2
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reject_stale_revision",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "translate",
+            "object_id": "native:SMPLNodes:0",
+            "offset_world_m": [
+              0.5,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "expect": {
+        "status": "error",
+        "error_code": "stale_revision"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "edited_preview",
+        "action": "preview",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 2,
+          "edit_trust": {
+            "edited": true
+          },
+          "preview_only": true
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "committed_observation",
+        "action": "observe",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 2,
+          "preview_only": false
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reject_runtime_edit",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2,
+          "command": {
+            "operation": "translate",
+            "object_id": "native:SMPLNodes:0",
+            "offset_world_m": [
+              0.5,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "expect": {
+        "status": "error",
+        "error_code": "edit_requires_pre_run"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reset552",
+        "action": "reset",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 0,
+          "reset_audit": {
+            "new_generation": true,
+            "native_positions_restored": true,
+            "managed_objects_cleared": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reject_old_generation",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "error",
+        "error_code": "stale_generation"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reset_preview",
+        "action": "preview",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "reset552.result.generation"
+          },
+          "expected_revision": 0
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 0,
+          "edit_trust": {
+            "edited": false
+          },
+          "preview_only": true
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "closed": true
+        }
+      }
+    }
+  ],
+  "verification": {
+    "minimum_coverage": {
+      "scene_loads": 1,
+      "edits": 2,
+      "native_edits": 1,
+      "managed_edits": 1,
+      "validations": 1,
+      "replayed_requests": 1,
+      "resets": 1,
+      "pre_run_previews": 3,
+      "committed_observations": 1,
+      "rejected_requests": 3
+    },
+    "required_rejections": [
+      "stale_revision",
+      "edit_requires_pre_run",
+      "stale_generation"
+    ],
+    "equal_rgb": [
+      [
+        "before_preview",
+        "reset_preview"
+      ],
+      [
+        "edited_preview",
+        "committed_observation"
+      ]
+    ],
+    "different_rgb": [
+      [
+        "before_preview",
+        "edited_preview"
+      ]
+    ]
+  }
+}

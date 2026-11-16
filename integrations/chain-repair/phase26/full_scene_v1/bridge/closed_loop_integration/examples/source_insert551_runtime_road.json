@@ -1,0 +1,9 @@
+{
+  "schema": "edited_hugsim_closed_loop_v1",
+  "driver": "phase38_runtime_road551_geometry_v1",
+  "edits": [
+    {
+      "source_insert": true
+    }
+  ]
+}

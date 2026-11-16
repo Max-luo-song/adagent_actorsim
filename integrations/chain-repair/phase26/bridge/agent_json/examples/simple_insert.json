@@ -1,0 +1,108 @@
+{
+  "schema": "agent_job_v1",
+  "description": "Minimal editable preview -> registered reference car insertion -> editable preview; five requests, no intentional errors.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load552",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "scene_id": "552",
+          "edit_revision": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "before_preview",
+        "action": "preview",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 0,
+          "preview_only": true
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "insert_car",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "insert",
+            "object_id": "managed:agent_car",
+            "asset_id": "realcar_white_20240604",
+            "placement_id": "scene552_ahead"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "replayed": false,
+        "result": {
+          "edit_revision": 1
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "edited_preview",
+        "action": "preview",
+        "args": {
+          "source_frame": 80,
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 1
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "edit_revision": 1,
+          "edit_trust": {
+            "edited": true
+          },
+          "preview_only": true
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok",
+        "result": {
+          "closed": true
+        }
+      }
+    }
+  ]
+}

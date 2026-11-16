@@ -1,0 +1,14 @@
+{
+  "schema": "scene_task_v2",
+  "task_id": "scene551_original_full",
+  "scene_id": "551",
+  "edits": [],
+  "simulation": {
+    "driver": "uniad_closed_loop",
+    "profile": "joint_safety_v7_diagnostic",
+    "control_steps": 188
+  },
+  "reset_after": true,
+  "weather": "clear",
+  "evaluation_mode": "diagnostic"
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "novel_view_distillation_v1",
+  "scene_manifest": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase31/stopped_vehicle551_v1/scene_manifest.json",
+  "trajectory": "${HUGSIM_ROOT}/integrations/novel-view-distillation/examples/scene551_left1m/trajectory.json",
+  "renderer_bundle": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/corridor_scene_v4",
+  "teacher": {
+    "src": "${HUGSIM_EXTERNAL_ROOT}/chery_workspace/guoluosong/new_traj/Difix3D/src",
+    "weights": "${HUGSIM_EXTERNAL_ROOT}/chery_workspace/guoluosong/new_traj/Difix3D/difix_ref",
+    "python": "${HUGSIM_ROOT}/integrations/novel-view-distillation/.teacher-env/bin/python"
+  },
+  "frame_stride": 3,
+  "epochs": 3,
+  "learning_rate": 0.0001
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "unified_scene_smoke_v1",
+  "cases": [
+    {
+      "scene_manifest": "${HUGSIM_ROOT}/integrations/sr-hugsim/configs/waymo172.json",
+      "sensor_audit": "${HUGSIM_ROOT}/outputs/n1_cross_scene_audit_20261020_015102/source_00/audit_report.json"
+    },
+    {
+      "scene_manifest": "${HUGSIM_ROOT}/integrations/sr-hugsim/configs/waymo552.json",
+      "sensor_audit": "${HUGSIM_ROOT}/outputs/n1_cross_scene_audit_20261020_015102/source_01/audit_report.json"
+    }
+  ],
+  "asset": "${HUGSIM_ROOT}/data/3DRealCar/2024_06_04_13_44_39",
+  "asset_calibration": "${HUGSIM_ROOT}/waymo23-native-import/configs/asset_calibrations/2024_06_04_13_44_39-support-v1.json"
+}

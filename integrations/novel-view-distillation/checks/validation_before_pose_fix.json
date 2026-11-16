@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "unit_tests": 15,
+  "cpu_training_save_reload_stage_test": true,
+  "actual_teacher_inference": {
+    "passed": true,
+    "actual_teacher_inference": true,
+    "reference_image_used": true,
+    "resolution": [
+      64,
+      64
+    ],
+    "device": "cpu",
+    "gpu_executed": false,
+    "seconds": 10.24885531514883,
+    "unet_module": "unet_2d_condition",
+    "vae_module": "autoencoder_kl"
+  },
+  "real_scene_trajectory_compile_passed": true,
+  "input_hashes_verified": true,
+  "prepared_job": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/prepared_cpu_v1_final",
+  "implementation": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/teacher.py": "42ad0431b29486e1c8a47af626729eb279869de895401be5a3221c86f655cd24",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/framework.py": "a6bb9f9ae79bd115a559ee21c02a3be2afa746fe7669b22d1a67f0dc8e723774",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/pipeline.py": "44d5973793ae3f90e71609ba847327e454a485975ddd5e37eb58b9f3ef2e880f",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/run.sh": "121b39c33156e4db13e28609e9ef7a9fdab6a084ed0ef55d130b7064d47f7a5d",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/test_pipeline.py": "0ea5167878b795a0c110cde2d2e21a99eefa6edb2b10ea2aa7b2dcf3e882fe33",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/contracts.py": "158142d5cdcb256363821f928281e58884489f478264f08392b7395808318eb8"
+  },
+  "renderer_snapshot": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/corridor_scene_v4",
+  "renderer_snapshot_sha256": "9a7c066a577f0700af91799ffbab9bf92ac7a9db711e5cbfa6510c54d59472cc",
+  "gpu_executed": false,
+  "actual_framework_backward_verified": false,
+  "full_resolution_quality_verified": false,
+  "closed_loop_driving": false,
+  "runtime_checkpoint_replaced": false,
+  "ready_for_gpu_validation": true
+}

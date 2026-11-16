@@ -1,0 +1,8 @@
+# 无编辑基线配置：不改任何节点、不加天气；用于 s1 全场景原生渲染验收
+weather_type: ""
+save_ckpt: false
+legend:
+  rigid: false
+  smpl: false
+# 离线环境无 torchvision 预训练 VGG（LPIPS 需要）——关闭指标计算
+compute_metrics: false

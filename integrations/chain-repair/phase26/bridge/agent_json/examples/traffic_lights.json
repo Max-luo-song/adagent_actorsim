@@ -1,0 +1,424 @@
+{
+  "schema": "agent_job_v1",
+  "description": "Native signal emitter-candidate color override, same-view R/Y/G/off, absolute-time phases, restore/reset. No traffic-rule control.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "lights",
+        "action": "list_traffic_lights",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "original_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "validate_red",
+        "action": "validate_edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "set_signal",
+            "object_id": "native:TrafficLightNodes:7",
+            "state": "red"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_red",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "set_signal",
+            "object_id": "native:TrafficLightNodes:7",
+            "state": "red"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "red_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 1,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_yellow",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 1,
+          "command": {
+            "operation": "set_signal",
+            "object_id": "native:TrafficLightNodes:7",
+            "state": "yellow"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "yellow_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 2,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_green",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 2,
+          "command": {
+            "operation": "set_signal",
+            "object_id": "native:TrafficLightNodes:7",
+            "state": "green"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "green_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 3,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_off",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 3,
+          "command": {
+            "operation": "set_signal",
+            "object_id": "native:TrafficLightNodes:7",
+            "state": "off"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "off_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 4,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "restore",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 4,
+          "command": {
+            "operation": "restore_signal",
+            "object_id": "native:TrafficLightNodes:7"
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "restored_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 5,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "program",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 5,
+          "command": {
+            "operation": "set_signal_program",
+            "object_id": "native:TrafficLightNodes:7",
+            "outside_state": "original",
+            "phases": [
+              {
+                "start_s": 12.0,
+                "end_s": 12.1,
+                "state": "red"
+              },
+              {
+                "start_s": 12.1,
+                "end_s": 12.2,
+                "state": "yellow"
+              },
+              {
+                "start_s": 12.2,
+                "end_s": 12.3,
+                "state": "green"
+              }
+            ]
+          }
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "phase_red",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 6,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "phase_yellow",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 6,
+          "source_frame": 121
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "phase_green",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 6,
+          "source_frame": 122
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reset",
+        "action": "reset",
+        "args": {
+          "expected_generation": {
+            "$ref": "load.result.generation"
+          },
+          "expected_revision": 6
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reset_view",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "reset.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 120
+        }
+      },
+      "expect": {
+        "status": "ok"
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      },
+      "expect": {
+        "status": "ok"
+      }
+    }
+  ],
+  "verification": {
+    "minimum_coverage": {
+      "scene_loads": 1,
+      "edits": 6,
+      "native_edits": 6,
+      "validations": 1,
+      "pre_run_previews": 10,
+      "resets": 1
+    },
+    "equal_rgb": [
+      [
+        "original_view",
+        "restored_view"
+      ],
+      [
+        "original_view",
+        "reset_view"
+      ]
+    ],
+    "different_rgb": [
+      [
+        "red_view",
+        "green_view"
+      ],
+      [
+        "red_view",
+        "off_view"
+      ],
+      [
+        "yellow_view",
+        "green_view"
+      ]
+    ]
+  }
+}

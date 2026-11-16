@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "unit_tests": 34,
+  "new_quality_tests": 10,
+  "inherited_pipeline_tests": 18,
+  "device_tests": 6,
+  "real_supervision_rows": 174,
+  "real_source_preflight_passed": true,
+  "prepared_plan": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v2/prepared_cpu_release/plan.json",
+  "plan_sha256": "f3736b8cdb7bb7081310a02b2f83e83a09d3ea710851d786632afe7c819f1eba",
+  "implementation": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/framework_v2.py": "fb4c7d25f80f907e7e3d47c296d32f132e467f5e3ecd8d851e2292ebde1b42b8",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/run.sh": "e3834ef3a90862c25b3ed69fc56099883f4ad3bfd458a6d4f8b4aec1c7a4e52a",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/test_quality.py": "af44f83db34a8de90be109a91051368e1e5dfbe55e5c76e55dbf54da1ecac949",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/quality_policy.py": "ea65e9a9b8dafd4b4475fa13669c457081eeb8834ed8ba27edbdcf7a15eea741",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/quality_v2/experiment.py": "922336880a85d2f8315499352db58d6093a201838d5e5bfcf42874255e9b431b",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/contracts.py": "65f364571d8c2b210025dbd0f9abc0707f5e8732b2d9fbcc11a319011d2b7d7d",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/pipeline.py": "5490efc2a4a904af1f8be1364c65c5d985fcfd0b443db0c618a8fb14cd368dfe"
+  },
+  "profiles": {
+    "lr_probe": {
+      "policy": {
+        "epochs": 3,
+        "dc_lr": 0.001,
+        "rest_lr": 0.0001,
+        "schedule": "v1_blocks",
+        "l1_weight": 1.0,
+        "ssim_weight": 0.0,
+        "edge_weight": 0.0,
+        "trust_region": false
+      }
+    },
+    "balanced": {
+      "policy": {
+        "epochs": 12,
+        "dc_lr": 0.001,
+        "rest_lr": 0.000125,
+        "schedule": "interleaved",
+        "l1_weight": 1.0,
+        "ssim_weight": 0.0,
+        "edge_weight": 0.0,
+        "trust_region": true
+      }
+    },
+    "structure": {
+      "policy": {
+        "epochs": 12,
+        "dc_lr": 0.001,
+        "rest_lr": 0.000125,
+        "schedule": "interleaved",
+        "l1_weight": 0.8,
+        "ssim_weight": 0.2,
+        "edge_weight": 0.1,
+        "trust_region": true
+      }
+    }
+  },
+  "renderer_identical_to_gpu_validated_v1_adapter": true,
+  "reused_pseudo_gt": true,
+  "teacher_regenerated": false,
+  "geometry_frozen": true,
+  "driver_modified": false,
+  "gpu_executed": false,
+  "actual_quality_improvement_verified": false,
+  "ready_for_gpu_ablation": true
+}

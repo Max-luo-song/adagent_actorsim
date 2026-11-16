@@ -1,0 +1,44 @@
+{
+  "version": "autonomous-patch-agent-v1",
+  "files": {
+    ".env.example": "584c3421b8ee743b06d994a3d3954e5d44b578acc1b16533a64dba29120478b0",
+    "README.md": "117efdde9ba9a403a63b98ccc322343d8e9fc1ead8808929d6694d56d8015dc9",
+    "adapter.py": "b1c3977044a3eeb3eb3e16e0775b607b4db6e72fb0f1cf035952cfe0393b8a02",
+    "builder.py": "abf567e9438ed90dcf33775d6a330215025dc62548dcc352bebba0d040d937f8",
+    "cli.py": "fda1575106949095e6b87831ab5ec1a538d2c97f34d25d59a506bda442fc2b1e",
+    "config.example.json": "caec7834c9d7a364ca3ef870dbc61803485bacd47c3314f5a85df49782377b86",
+    "contracts.py": "fe2966932114125e542038bfd4c3890bd7cd1722e928a8446683e74c29ec4a55",
+    "core.py": "65f7d5cc63b3449ce034e03bdbf85c29a81e234d42f0f9f1cb18256a0be69d7d",
+    "daemon.py": "87e32f2a712b70d3e1b3d0c4750044f34b5d22f32be8af0cdd1895f91784e6a9",
+    "engine.py": "6bf2353e9b5cec2a051c3cf203943345662e5e9adbaffbe0902846e7165c4802",
+    "evidence.py": "68e9682579ba34d44f7b12119bb08474439580bcd5cd138965d6f611ea6fb79e",
+    "jobs.py": "e20fb43ba7f2a1eece069ba2823a540056b547ab24479863f08ec9102359f0e9",
+    "presentation.py": "1bfaa1f2c61b55d91b44b9fae0eeb55af9dd814baf629749023e219134b9a9e4",
+    "probe.py": "a743d79426c4ec225e2608b0de94a889d6f4ce1fa33c3a043721d76a75f99067",
+    "prompt.txt": "9e49ebf0a249197950aedab0f5e2bf660f6a416923b3d002d67e2a052b156940",
+    "provider.py": "89d745df5210d4ff3610c461e99075092cdc4baae8799b8c000ee1bcb2d344f5",
+    "run.sh": "a7774f2daa32888f6be38cfda9f39af218db85d9a2d17dc328a0aa816a3871b4",
+    "schemas/decision.schema.json": "b8a3da8e98f6c95279d41e3335ebac0a7b9b780a35155dd9e7adae3bdb68a454",
+    "smoke.py": "2d60d4bfc09a3ee998c2f4096f9587c80ab13bdd09566e239c458e77ead52e6f",
+    "test_runner.py": "d7bb73a057f21ed284bbb786ad004f17e89c20d6a7410a08a5d38d677db64ef9",
+    "tests/helpers.py": "e4616eb22060d3dc5c92e194c26696c40c28edc01421421e3f0d2b58380d9982",
+    "tests/test_builder.py": "66eabd4dc2373ebf6420db77e19d7897633a412f858559edc811ba01a514e8c0",
+    "tests/test_contracts.py": "dbc63a6dc20a839952675216e411ef3e050a2a2eae59a9c70bccc7efee5c0eb3",
+    "tests/test_daemon.py": "a3a469179fad53547a254700b8f7f085bbf7ac476c937ff0aca5a00c259f466b",
+    "tests/test_engine.py": "7c630189e73b48315875c96066097e7617b4828ef5e411b7604a40d757be44cd",
+    "tests/test_jobs.py": "4111baa984014948f47305549b348ec5b8746babe6b9f6f2ba648f43c6e7ff9c",
+    "tests/test_provider.py": "3409ffdc3ba4499c9c5ce14d855333a9563f7205f5d9387d8b39b854ed8f21b2",
+    "tests/test_runner_evidence.py": "eb060aedd637e5341245faae2c902fbe6559dbd242e9076c6e564197b4952ec2",
+    "tests/test_validation.py": "210173e491b499e6819eef910d07ec4da372265a453805264aee76baa2912491",
+    "validation.py": "5a76b55ab28e3f3f671bedf68c1544fc6bc642c743f28ad915f00a9bb3136ee3"
+  },
+  "selftest": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v1/checks/selftest.json",
+    "sha256": "d7c8928679b945aea9d50927352da172a281c75081302690c10808f7a8db713a"
+  },
+  "real_adapter_validation": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v1/checks/real_adapter_recheck.json",
+    "sha256": "cadd3f97e8f49187bb30c014c12fd92dc9dfe8809de6342cde85ab7cb304eba6"
+  },
+  "API_model_configuration_pending": true
+}

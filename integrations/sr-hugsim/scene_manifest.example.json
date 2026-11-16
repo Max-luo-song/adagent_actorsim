@@ -1,0 +1,15 @@
+{
+  "schema": "sr_hugsim_scene_manifest_draft_v1",
+  "backend_repository": "${HUGSIM_ROOT}/integrations/sr-origin-main",
+  "backend_commit": "7de864632805b23a5a3522358b7de982ad7df01b",
+  "checkpoint": null,
+  "checkpoint_adjacent_config": null,
+  "processed_scene_data_root": null,
+  "dataset": null,
+  "cameras": [],
+  "simulation_time_origin_seconds": null,
+  "source_frame_period_seconds": null,
+  "source_world_to_sim_world": null,
+  "source_ego_to_sim_ego": null,
+  "run_training": false
+}

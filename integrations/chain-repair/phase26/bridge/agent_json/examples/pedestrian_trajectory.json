@@ -1,0 +1,412 @@
+{
+  "schema": "agent_job_v1",
+  "description": "Native SMPL pedestrian: 4s crossing, 5.5m left; paired fixed gravity-level camera renders, exact restore/reset RGB, exactly-once edit replay. Recorded gait retained; no driving or generated gait.",
+  "steps": [
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "load552",
+        "action": "load_scene",
+        "args": {
+          "scene_id": "552"
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "source_before",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 120
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "validate_pedestrian",
+        "action": "validate_edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "set_actor_trajectory",
+            "object_id": "native:SMPLNodes:1",
+            "trajectory": {
+              "schema": "actor_trajectory_v1",
+              "coordinate_frame": "start_ego_ground",
+              "outside_interval": "hold",
+              "waypoints": [
+                {
+                  "timestamp_s": 8,
+                  "offset_m": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "yaw_delta_degrees": 0
+                },
+                {
+                  "timestamp_s": 9,
+                  "offset_m": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "yaw_delta_degrees": 45
+                },
+                {
+                  "timestamp_s": 10,
+                  "offset_m": [
+                    1.5,
+                    2.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 70
+                },
+                {
+                  "timestamp_s": 11,
+                  "offset_m": [
+                    1.5,
+                    4,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                },
+                {
+                  "timestamp_s": 12,
+                  "offset_m": [
+                    1.5,
+                    5.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_pedestrian",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "set_actor_trajectory",
+            "object_id": "native:SMPLNodes:1",
+            "trajectory": {
+              "schema": "actor_trajectory_v1",
+              "coordinate_frame": "start_ego_ground",
+              "outside_interval": "hold",
+              "waypoints": [
+                {
+                  "timestamp_s": 8,
+                  "offset_m": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "yaw_delta_degrees": 0
+                },
+                {
+                  "timestamp_s": 9,
+                  "offset_m": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "yaw_delta_degrees": 45
+                },
+                {
+                  "timestamp_s": 10,
+                  "offset_m": [
+                    1.5,
+                    2.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 70
+                },
+                {
+                  "timestamp_s": 11,
+                  "offset_m": [
+                    1.5,
+                    4,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                },
+                {
+                  "timestamp_s": 12,
+                  "offset_m": [
+                    1.5,
+                    5.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_pedestrian",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 0,
+          "command": {
+            "operation": "set_actor_trajectory",
+            "object_id": "native:SMPLNodes:1",
+            "trajectory": {
+              "schema": "actor_trajectory_v1",
+              "coordinate_frame": "start_ego_ground",
+              "outside_interval": "hold",
+              "waypoints": [
+                {
+                  "timestamp_s": 8,
+                  "offset_m": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "yaw_delta_degrees": 0
+                },
+                {
+                  "timestamp_s": 9,
+                  "offset_m": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "yaw_delta_degrees": 45
+                },
+                {
+                  "timestamp_s": 10,
+                  "offset_m": [
+                    1.5,
+                    2.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 70
+                },
+                {
+                  "timestamp_s": 11,
+                  "offset_m": [
+                    1.5,
+                    4,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                },
+                {
+                  "timestamp_s": 12,
+                  "offset_m": [
+                    1.5,
+                    5.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                }
+              ]
+            }
+          }
+        }
+      },
+      "expect": {
+        "status": "ok",
+        "replayed": true
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "pedestrian_crossing",
+        "action": "preview_actor_trajectory",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 1,
+          "object_id": "native:SMPLNodes:1",
+          "start_frame": 80,
+          "end_frame": 120,
+          "camera_source_frame": 80
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "restore_pedestrian",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 1,
+          "command": {
+            "operation": "restore_actor_trajectory",
+            "object_id": "native:SMPLNodes:1"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "source_restored",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2,
+          "source_frame": 120
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "set_again",
+        "action": "edit",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 2,
+          "command": {
+            "operation": "set_actor_trajectory",
+            "object_id": "native:SMPLNodes:1",
+            "trajectory": {
+              "schema": "actor_trajectory_v1",
+              "coordinate_frame": "start_ego_ground",
+              "outside_interval": "hold",
+              "waypoints": [
+                {
+                  "timestamp_s": 8,
+                  "offset_m": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "yaw_delta_degrees": 0
+                },
+                {
+                  "timestamp_s": 9,
+                  "offset_m": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "yaw_delta_degrees": 45
+                },
+                {
+                  "timestamp_s": 10,
+                  "offset_m": [
+                    1.5,
+                    2.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 70
+                },
+                {
+                  "timestamp_s": 11,
+                  "offset_m": [
+                    1.5,
+                    4,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                },
+                {
+                  "timestamp_s": 12,
+                  "offset_m": [
+                    1.5,
+                    5.5,
+                    0
+                  ],
+                  "yaw_delta_degrees": 80
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "reset_pedestrian",
+        "action": "reset",
+        "args": {
+          "expected_generation": {
+            "$ref": "load552.result.generation"
+          },
+          "expected_revision": 3
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "source_reset",
+        "action": "preview",
+        "args": {
+          "expected_generation": {
+            "$ref": "reset_pedestrian.result.generation"
+          },
+          "expected_revision": 0,
+          "source_frame": 120
+        }
+      }
+    },
+    {
+      "request": {
+        "schema": "agent_request_v1",
+        "request_id": "close",
+        "action": "close",
+        "args": {}
+      }
+    }
+  ],
+  "verification": {
+    "minimum_coverage": {
+      "actor_trajectory_edits": 3,
+      "actor_trajectory_previews": 1,
+      "replayed_requests": 1,
+      "resets": 1,
+      "validations": 1
+    },
+    "equal_rgb": [
+      [
+        "source_before",
+        "source_restored"
+      ],
+      [
+        "source_before",
+        "source_reset"
+      ]
+    ]
+  }
+}

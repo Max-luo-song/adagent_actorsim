@@ -1,0 +1,5 @@
+{
+  "schema": "unified_uniad_probe_v1",
+  "interface_request": "${HUGSIM_ROOT}/integrations/sr-hugsim/configs/unified_smoke.json",
+  "frames": 5
+}

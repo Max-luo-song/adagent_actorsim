@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "unit_tests": 18,
+  "calibration_rows_checked": 174,
+  "max_orthogonality_error": 7.595608664257014e-08,
+  "old_gpu_error_quantified": false,
+  "old_images_reused": false,
+  "actual_framework_gpu_fix_verified": false,
+  "gpu_executed": false,
+  "implementation": {
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/teacher.py": "42ad0431b29486e1c8a47af626729eb279869de895401be5a3221c86f655cd24",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/framework.py": "f092fe23b21b2deb4e11af5cfc58d84627ec00d2e03f9a5638b5becb7607d7c9",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/pipeline.py": "5490efc2a4a904af1f8be1364c65c5d985fcfd0b443db0c618a8fb14cd368dfe",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/run.sh": "121b39c33156e4db13e28609e9ef7a9fdab6a084ed0ef55d130b7064d47f7a5d",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/test_pipeline.py": "bb3f03f9ebfd32dcb91f68a73b5894ce191e23b249a06cf1d5357b57aa4777be",
+    "${HUGSIM_ROOT}/integrations/novel-view-distillation/contracts.py": "65f364571d8c2b210025dbd0f9abc0707f5e8732b2d9fbcc11a319011d2b7d7d"
+  },
+  "source_audit": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/novel_distillation_v1/runs/20261108T021808Z/failure_audit/cpu_calibration_check.json"
+}

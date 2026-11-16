@@ -1,0 +1,35 @@
+{
+  "schema": "scene_platform_validation_v1",
+  "cpu_tests_passed": 17,
+  "synthetic_video_encoder_decode_test_passed": true,
+  "synthetic_video_is_GPU_scenario_evidence": false,
+  "new_GPU_run_executed": false,
+  "LLM_invoked": false,
+  "driver_code_modified": false,
+  "driver_safe_driving_certified": false,
+  "v2_preflight": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/scene_platform_v1/jobs/mock_197adce33a9987459f49d5ba/preflight.json",
+    "sha256": "81065ada6a608658b902d29d5a68073470ba0f544e44762fc9b8c2caabda0b9e"
+  },
+  "legacy_preflight": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/scene_platform_v1/jobs/platform_legacy_verify_v4/preflight.json",
+    "sha256": "a52569821b6973c1e1f4bc56153a367ba4bc5d3f096a9aa1faabfd1a08a790c8"
+  },
+  "simulated_tool_calls": {
+    "path": "${HUGSIM_ROOT}/outputs/scene_platform_demo/cutin30/tool_calls.json",
+    "sha256": "0b2365b63f37a28e1fa0c9f23e45f481b243617487adc8e9dc84b64da2173462"
+  },
+  "simulated_tool_responses": {
+    "path": "${HUGSIM_ROOT}/outputs/scene_platform_demo/cutin30/tool_responses.json",
+    "sha256": "426ddd46d460979cbc626a393fceeb7d3ab7f1e80f76cff356e8c3afbd0423bb"
+  },
+  "simulation_receipt": {
+    "path": "${HUGSIM_ROOT}/outputs/scene_platform_demo/cutin30/simulation_receipt.json",
+    "sha256": "c5bf7d4829e8e825f6698d345e9d2a9370d521d35199ff0bad2d3ca75cc4bc14"
+  },
+  "state": {
+    "state": "prepared",
+    "controls_started": false
+  },
+  "next_validation": "Same mock-LLM command on an idle CUDA host; verify actual edit/control/scoring/reset evidence before claiming end-to-end integration"
+}

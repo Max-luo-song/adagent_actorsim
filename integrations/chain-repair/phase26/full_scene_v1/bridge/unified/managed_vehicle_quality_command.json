@@ -1,0 +1,35 @@
+{
+  "operation": "insert",
+  "object_id": "managed:preview_car",
+  "mode": "diagnostic_preview",
+  "asset": "${HUGSIM_ROOT}/data/3DRealCar/2024_06_04_13_44_39",
+  "asset_calibration": "${HUGSIM_ROOT}/waymo23-native-import/configs/asset_calibrations/2024_06_04_13_44_39-support-v1.json",
+  "asset_to_world": [
+    [
+      0.9653228687999584,
+      0.03164098786520438,
+      -0.2591343413342435,
+      23.322122929809712
+    ],
+    [
+      0.26087976635746524,
+      -0.08015133920121521,
+      0.9620382062732882,
+      3.510180897390689
+    ],
+    [
+      0.009669874719591671,
+      -0.9962803875973698,
+      -0.08562641421746954,
+      0.20565140006602337
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "schema": "scene_edit_v1",
+  "expected_revision": 0
+}

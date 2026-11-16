@@ -1,0 +1,8 @@
+{
+  "schema": "scene_edit_v1",
+  "mode": "diagnostic_preview",
+  "operation": "translate",
+  "object_id": "native:DeformableNodes:1",
+  "offset_world_m": [0.0, 0.5, 0.0],
+  "expected_revision": 0
+}

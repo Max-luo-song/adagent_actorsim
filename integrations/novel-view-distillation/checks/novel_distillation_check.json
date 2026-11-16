@@ -1,0 +1,8 @@
+{
+  "renderer_cuda_available": false,
+  "teacher_import_ok": true,
+  "teacher_probe_stdout": "teacher_import_ok False\n",
+  "teacher_probe_stderr": "${HUGSIM_ROOT}/integrations/novel-view-distillation/.teacher-env/lib/python3.11/site-packages/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.\n  torch.utils._pytree._register_pytree_node(\n",
+  "teacher_weights_present": true,
+  "gpu_executed": false
+}

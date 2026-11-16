@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+
+
+NAVSIM_PATH=/inspire/hdd3/project/intelligent-driving-agent/guoluosong-253108120129/hugsim-reproduction/code/NAVSIM
+cd ${NAVSIM_PATH}
+echo ${PWD}
+CHECKPOINT=${LTF_CHECKPOINT:-./ckpts/ltf_seed_0.ckpt}
+CUDA_VISIBLE_DEVICES=${1} pixi run python ltf_e2e.py   output=$2   agent.checkpoint_path=$CHECKPOINT
+cd -

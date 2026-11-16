@@ -1,0 +1,54 @@
+{
+  "schema": "autonomous_patch_agent_release_v6",
+  "time": "2026-11-13T04:44:50.332344+00:00",
+  "files": {
+    ".env.example": "584c3421b8ee743b06d994a3d3954e5d44b578acc1b16533a64dba29120478b0",
+    "ITERATION_POLICY.md": "dbc73c24e9cd76a7698a339ceaec72127fe2c1062e75921168f0ef9a8f7c8867",
+    "README.md": "1039cd84d4f1148813b34db249df2776e019323d2a99dd35221bf36225784115",
+    "adapter.py": "7a51df101e06008cd4eedc4ddd43fe5f84969bf93d7ad94fd227af017cea0ea8",
+    "builder.py": "7a9dd478ef78ea98633cb7c4043d752c8159cd799b7b3d987f9e37428cfded32",
+    "cli.py": "0a2537da6e319e5ab53e0cef9c28b6003ffca09629c1afdef799db3a96c27595",
+    "config.example.json": "3d8cc136a6da2aa6cb8ee01a1924db594a9ca47c6f92b0763c185eca8347a50c",
+    "contracts.py": "f3a4c406242df803b77f518a625f8ddb8747076e2396a58a210643a34dfcfa7e",
+    "core.py": "65f7d5cc63b3449ce034e03bdbf85c29a81e234d42f0f9f1cb18256a0be69d7d",
+    "daemon.py": "16ac929f11ed460d8b7b48f9e1587af0206d4b09e2527278362a17605dbba8f9",
+    "engine.py": "bbcc510a00e0a81e54e3d60686065bdf726b749ef732b767fccefad65a5bfb6f",
+    "evidence.py": "90a8d0e97960cea05efeea3745c235687afeda510673fadf10e589094f5cb1b5",
+    "governance.py": "c00d67626a4faba9e4decddd282809f5f129f598dd8d590d2cef2757333a3128",
+    "jobs.py": "e20fb43ba7f2a1eece069ba2823a540056b547ab24479863f08ec9102359f0e9",
+    "presentation.py": "1bfaa1f2c61b55d91b44b9fae0eeb55af9dd814baf629749023e219134b9a9e4",
+    "probe.py": "a743d79426c4ec225e2608b0de94a889d6f4ce1fa33c3a043721d76a75f99067",
+    "prompt.txt": "7a626d601df4daeac7c10a13e049b16106dcdc3d170aafb17b7ec7de13a92344",
+    "provider.py": "9099fb982d71b863bbb8d493b1cf740c21d613fb586ce9209400923f3686f018",
+    "run.sh": "a7774f2daa32888f6be38cfda9f39af218db85d9a2d17dc328a0aa816a3871b4",
+    "schemas/decision.schema.json": "87c553fb560889fac5988cdb60e511d4d3aadb04acad3b3d199c05d17726ffaf",
+    "smoke.py": "7e83d9bd2ada9ed2e0cf2af715188a4e98ebb6e445162b1ac43376c22c097a68",
+    "test_runner.py": "4102523e7951f3ea1f8cf542d9428d29134e3273540b48688e803356169a3783",
+    "tests/helpers.py": "e4616eb22060d3dc5c92e194c26696c40c28edc01421421e3f0d2b58380d9982",
+    "tests/test_builder.py": "66eabd4dc2373ebf6420db77e19d7897633a412f858559edc811ba01a514e8c0",
+    "tests/test_contracts.py": "dbc63a6dc20a839952675216e411ef3e050a2a2eae59a9c70bccc7efee5c0eb3",
+    "tests/test_daemon.py": "a3a469179fad53547a254700b8f7f085bbf7ac476c937ff0aca5a00c259f466b",
+    "tests/test_engine.py": "7c630189e73b48315875c96066097e7617b4828ef5e411b7604a40d757be44cd",
+    "tests/test_governance.py": "e2be31668f7988006ed4d6084a600e99761fe0961792272f3185d9305cbfb196",
+    "tests/test_jobs.py": "4111baa984014948f47305549b348ec5b8746babe6b9f6f2ba648f43c6e7ff9c",
+    "tests/test_provider.py": "3409ffdc3ba4499c9c5ce14d855333a9563f7205f5d9387d8b39b854ed8f21b2",
+    "tests/test_runner_evidence.py": "eb060aedd637e5341245faae2c902fbe6559dbd242e9076c6e564197b4952ec2",
+    "tests/test_streaming.py": "b734ca463cd684f1bdf540fbabb6fcc60d46b13e61eec18378e4f05bb9efc7f2",
+    "tests/test_validation.py": "210173e491b499e6819eef910d07ec4da372265a453805264aee76baa2912491",
+    "tests/test_version_transport.py": "2fc13bd1115b52ffd13520372b0d940d6ceed52e6992a6b155acc320776a9dd3",
+    "tests/test_workflow_repair.py": "8a708b2313fa2e16fdb007d3da624293c9b5cc4cd6ab40a06a3f829507ba9026",
+    "validation.py": "5a76b55ab28e3f3f671bedf68c1544fc6bc642c743f28ad915f00a9bb3136ee3"
+  },
+  "tests": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v6/checks/selftest.json",
+    "sha256": "97b93d14dbc7709ef5e943091cec8516643cf77ffd739743e90b5e1c188a01c6"
+  },
+  "recovery": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v6/checks/recovery_preflight.json",
+    "sha256": "e6a0c85633cb76294c8936b6f56ad48a15760824510602cc3b630fb01a6b52ca"
+  },
+  "offline_draft": {
+    "path": "${HUGSIM_ROOT}/outputs/gpu_test_service/jobs/unified-open-closed-172-20261022-v4/chain_repair/phase26/autonomous_patch_agent_v6/checks/real_draft_replay.json",
+    "sha256": "1b5136ada273f94035cd9be2134496a2c41e41f2738dbc78870961e6d91a18ce"
+  }
+}

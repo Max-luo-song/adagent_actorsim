@@ -1,0 +1,11 @@
+{
+  "pipeline.py": "bda3dd13d87fda63116ffd89782a18efff26be998dd50267abc8f9559f25fceb",
+  "export_semantics.py": "6ff7fbf92290adf68eb51178594f16b83b60c1f6becfe71c804c46c105a4703d",
+  "contract.json": "d89f5f22f731512765d95e2994e0b4f742ac7b4a0b33cc79707dd2781c539aa2",
+  "run.sh": "98121859ae583c45e606bb223f55108cdddb32352aad8c575e6e2ae6fc62c865",
+  "scene_data.py": "21a4b7d2daf9a5263ba1225b308f4738c027983e94915c98953cf091a447199b",
+  "cases.json": "456ab96c65a13b38919ceff1d594589d9dd457daccd1f6f78397f26cc6dee207",
+  "raw_metadata.py": "f4394397c222d227b74c5042acf3cece95c248f21df3bcd6235f01c6bd54fa53",
+  "portable_segformer.py": "877151baa0cdc17aee7e7a2f6e9b4184cb24f7f8efd79b567a22255bc953a864",
+  "point_semantics.py": "c6f1138fce4fea63af52a60f4c45493be7b90830fc9ae0f0a4d503f428876e99"
+}

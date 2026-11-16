@@ -1,0 +1,31 @@
+mode: hard_00
+plan_list:
+- - -1
+  - 35.0
+  - -0.3
+  - 3.14
+  - 2
+  - 2024_07_09_04_42_06/postprocess/shadow.pth
+  - ConstantPlanner
+  - {}
+iteration: 30000
+sh_degree: 3
+load_HD_map: false
+white_background: false
+data_device: cpu
+data_type: waymo
+start_euler:
+- 0.0
+- 0.0
+- 0.0
+start_ab:
+- 0.0
+- 6.0
+start_velo: 1
+start_steer: 0
+target: 60
+scene_name: '398895700423_0_200'
+affine: false
+quiet: false
+ignore_dynamic: false
+unicycle: false
